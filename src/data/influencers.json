@@ -1,0 +1,270 @@
+[
+  {
+    "id": "inf-1",
+    "name": "Sarah Jenkins",
+    "avatar": "https://i.pravatar.cc/150?u=sarah",
+    "category": "Tech",
+    "location": "San Francisco, CA",
+    "platforms": {
+      "youtube": {
+        "followers": 1250000,
+        "handle": "@SarahTech"
+      },
+      "instagram": {
+        "followers": 450000,
+        "handle": "@sarah_tech_life"
+      }
+    },
+    "engagementRate": 5.8,
+    "trustScore": 96,
+    "bio": "Software engineer turned tech reviewer. Demystifying gadgets and coding for the everyday consumer.",
+    "verified": true,
+    "pricingTiers": {
+      "video": 12000,
+      "story": 1500,
+      "bundle": 14000
+    },
+    "pastCollaborations": [
+      {
+        "brandName": "Sony",
+        "campaignName": "Alpha Camera Launch",
+        "roi": "4.2x Return",
+        "impressions": 2500000
+      },
+      {
+        "brandName": "Notion",
+        "campaignName": "Productivity Mastery",
+        "roi": "3.8x Return",
+        "impressions": 1100000
+      }
+    ],
+    "reviews": [
+      {
+        "brandName": "Sony",
+        "rating": 5,
+        "comment": "Sarah delivered exactly what we needed. High production value and massive audience engagement.",
+        "date": "2023-11-15T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "inf-2",
+    "name": "Marcus Chen",
+    "avatar": "https://i.pravatar.cc/150?u=marcus",
+    "category": "Fitness",
+    "location": "Austin, TX",
+    "platforms": {
+      "instagram": {
+        "followers": 850000,
+        "handle": "@marcus_fit"
+      },
+      "tiktok": {
+        "followers": 2100000,
+        "handle": "@marcus_moves"
+      }
+    },
+    "engagementRate": 8.2,
+    "trustScore": 92,
+    "bio": "Former Olympic athlete sharing daily workouts, nutrition tips, and motivation.",
+    "verified": true,
+    "pricingTiers": {
+      "post": 4000,
+      "story": 2500,
+      "video": 8000,
+      "bundle": 12000
+    },
+    "pastCollaborations": [
+      {
+        "brandName": "Gymshark",
+        "campaignName": "Summer Shred",
+        "roi": "5.1x Return",
+        "impressions": 3200000
+      }
+    ],
+    "reviews": [
+      {
+        "brandName": "Gymshark",
+        "rating": 5,
+        "comment": "Incredible ROI on the TikTok integration. Highly recommend Marcus.",
+        "date": "2023-08-20T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "inf-3",
+    "name": "Elena Rodriguez",
+    "avatar": "https://i.pravatar.cc/150?u=elena",
+    "category": "Beauty",
+    "location": "Miami, FL",
+    "platforms": {
+      "instagram": {
+        "followers": 3200000,
+        "handle": "@elena_glam"
+      },
+      "youtube": {
+        "followers": 1800000,
+        "handle": "@ElenaBeauty"
+      }
+    },
+    "engagementRate": 4.1,
+    "trustScore": 88,
+    "bio": "Makeup artist and skincare enthusiast. Creating bold looks and honest product reviews.",
+    "verified": true,
+    "pricingTiers": {
+      "post": 8000,
+      "story": 3000,
+      "video": 15000,
+      "bundle": 22000
+    },
+    "pastCollaborations": [
+      {
+        "brandName": "Sephora",
+        "campaignName": "Holiday Haul",
+        "roi": "3.5x Return",
+        "impressions": 4500000
+      },
+      {
+        "brandName": "Fenty Beauty",
+        "campaignName": "Pro Filt'r Launch",
+        "roi": "4.8x Return",
+        "impressions": 6100000
+      }
+    ],
+    "reviews": [
+      {
+        "brandName": "Fenty Beauty",
+        "rating": 5,
+        "comment": "Elena's audience is highly engaged and trusts her recommendations implicitly.",
+        "date": "2023-12-05T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "inf-4",
+    "name": "David Kim",
+    "avatar": "https://i.pravatar.cc/150?u=david",
+    "category": "Food",
+    "location": "New York, NY",
+    "platforms": {
+      "tiktok": {
+        "followers": 4500000,
+        "handle": "@dave_eats_nyc"
+      },
+      "instagram": {
+        "followers": 950000,
+        "handle": "@daveeats"
+      }
+    },
+    "engagementRate": 11.5,
+    "trustScore": 98,
+    "bio": "Hunting down the best street food and hidden gems in NYC.",
+    "verified": true,
+    "pricingTiers": {
+      "post": 5000,
+      "video": 9000,
+      "bundle": 13000
+    },
+    "pastCollaborations": [
+      {
+        "brandName": "Uber Eats",
+        "campaignName": "Local Favorites",
+        "roi": "2.9x Return",
+        "impressions": 1800000
+      }
+    ],
+    "reviews": [
+      {
+        "brandName": "Uber Eats",
+        "rating": 4,
+        "comment": "Great local reach, drove significant orders to featured restaurants.",
+        "date": "2024-01-10T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "inf-5",
+    "name": "Aisha Patel",
+    "avatar": "https://i.pravatar.cc/150?u=aisha",
+    "category": "Fashion",
+    "location": "London, UK",
+    "platforms": {
+      "instagram": {
+        "followers": 1100000,
+        "handle": "@aisha_styles"
+      }
+    },
+    "engagementRate": 3.9,
+    "trustScore": 85,
+    "bio": "Sustainable fashion advocate. Styling vintage and eco-friendly brands.",
+    "verified": false,
+    "pricingTiers": {
+      "post": 2500,
+      "story": 800,
+      "bundle": 3000
+    },
+    "pastCollaborations": [
+      {
+        "brandName": "Patagonia",
+        "campaignName": "Worn Wear",
+        "roi": "2.5x Return",
+        "impressions": 850000
+      }
+    ],
+    "reviews": [
+      {
+        "brandName": "Patagonia",
+        "rating": 5,
+        "comment": "Perfect alignment with our brand values. Authentic and impactful content.",
+        "date": "2023-10-22T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "inf-6",
+    "name": "Leo Vance",
+    "avatar": "https://i.pravatar.cc/150?u=leo",
+    "category": "Travel",
+    "location": "Nomad",
+    "platforms": {
+      "youtube": {
+        "followers": 2800000,
+        "handle": "@LeoExplores"
+      },
+      "instagram": {
+        "followers": 1500000,
+        "handle": "@leo_vance"
+      }
+    },
+    "engagementRate": 6.4,
+    "trustScore": 94,
+    "bio": "Cinematic travel vlogs and photography from the most remote places on Earth.",
+    "verified": true,
+    "pricingTiers": {
+      "post": 6000,
+      "video": 18000,
+      "bundle": 22000
+    },
+    "pastCollaborations": [
+      {
+        "brandName": "GoPro",
+        "campaignName": "Hero 12 Launch",
+        "roi": "6.5x Return",
+        "impressions": 8200000
+      },
+      {
+        "brandName": "Airbnb",
+        "campaignName": "Unique Stays",
+        "roi": "4.1x Return",
+        "impressions": 3400000
+      }
+    ],
+    "reviews": [
+      {
+        "brandName": "GoPro",
+        "rating": 5,
+        "comment": "Breathtaking visuals. Leo always pushes our gear to the limit and delivers stunning results.",
+        "date": "2023-09-12T00:00:00Z"
+      }
+    ]
+  }
+]

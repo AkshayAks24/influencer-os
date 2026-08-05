@@ -1,0 +1,136 @@
+[
+  {
+    "id": "camp-1",
+    "title": "Lumina Pro X Launch",
+    "brand": {
+      "id": "brand-1",
+      "name": "Lumina Tech",
+      "logo": "https://ui-avatars.com/api/?name=Lumina+Tech&background=4F46E5&color=fff",
+      "industry": "Consumer Electronics",
+      "campaignsPosted": 14,
+      "activeCampaigns": 3
+    },
+    "status": "Active",
+    "deliverables": ["1 Dedicated YouTube Video", "2 Instagram Stories", "1 TikTok Video"],
+    "timeline": {
+      "startDate": "2024-03-01T00:00:00Z",
+      "endDate": "2024-04-15T00:00:00Z"
+    },
+    "budget": 45000,
+    "assignedInfluencers": [
+      {
+        "id": "inf-1",
+        "name": "Sarah Jenkins",
+        "avatar": "https://i.pravatar.cc/150?u=sarah"
+      }
+    ],
+    "contentApprovalStatus": "Approved"
+  },
+  {
+    "id": "camp-2",
+    "title": "Summer Shred Challenge",
+    "brand": {
+      "id": "brand-2",
+      "name": "FitCore Apparel",
+      "logo": "https://ui-avatars.com/api/?name=FitCore+Apparel&background=10B981&color=fff",
+      "industry": "Fitness Apparel",
+      "campaignsPosted": 42,
+      "activeCampaigns": 8
+    },
+    "status": "In Review",
+    "deliverables": ["3 TikTok Videos", "1 Instagram Reel"],
+    "timeline": {
+      "startDate": "2024-05-01T00:00:00Z",
+      "endDate": "2024-06-30T00:00:00Z"
+    },
+    "budget": 25000,
+    "assignedInfluencers": [
+      {
+        "id": "inf-2",
+        "name": "Marcus Chen",
+        "avatar": "https://i.pravatar.cc/150?u=marcus"
+      }
+    ],
+    "contentApprovalStatus": "Pending"
+  },
+  {
+    "id": "camp-3",
+    "title": "Eco-Friendly Fall Collection",
+    "brand": {
+      "id": "brand-5",
+      "name": "Wanderlust Gear",
+      "logo": "https://ui-avatars.com/api/?name=Wanderlust+Gear&background=06B6D4&color=fff",
+      "industry": "Travel & Outdoors",
+      "campaignsPosted": 19,
+      "activeCampaigns": 2
+    },
+    "status": "Completed",
+    "deliverables": ["1 Instagram Post", "3 Instagram Stories"],
+    "timeline": {
+      "startDate": "2023-09-01T00:00:00Z",
+      "endDate": "2023-10-31T00:00:00Z"
+    },
+    "budget": 12000,
+    "assignedInfluencers": [
+      {
+        "id": "inf-5",
+        "name": "Aisha Patel",
+        "avatar": "https://i.pravatar.cc/150?u=aisha"
+      },
+      {
+        "id": "inf-6",
+        "name": "Leo Vance",
+        "avatar": "https://i.pravatar.cc/150?u=leo"
+      }
+    ],
+    "contentApprovalStatus": "Approved"
+  },
+  {
+    "id": "camp-4",
+    "title": "Flawless Base Routine",
+    "brand": {
+      "id": "brand-3",
+      "name": "Glow Cosmetics",
+      "logo": "https://ui-avatars.com/api/?name=Glow+Cosmetics&background=EC4899&color=fff",
+      "industry": "Beauty & Skincare",
+      "campaignsPosted": 27,
+      "activeCampaigns": 5
+    },
+    "status": "Draft",
+    "deliverables": ["1 YouTube Video", "1 Instagram Reel"],
+    "timeline": {
+      "startDate": "2024-07-01T00:00:00Z",
+      "endDate": "2024-08-15T00:00:00Z"
+    },
+    "budget": 35000,
+    "assignedInfluencers": [],
+    "contentApprovalStatus": "Pending"
+  },
+  {
+    "id": "camp-5",
+    "title": "Midnight Snack Cravings",
+    "brand": {
+      "id": "brand-4",
+      "name": "FreshBite Delivery",
+      "logo": "https://ui-avatars.com/api/?name=FreshBite+Delivery&background=F59E0B&color=fff",
+      "industry": "Food & Beverage",
+      "campaignsPosted": 8,
+      "activeCampaigns": 1
+    },
+    "status": "Active",
+    "deliverables": ["4 TikTok Videos"],
+    "timeline": {
+      "startDate": "2024-02-15T00:00:00Z",
+      "endDate": "2024-03-15T00:00:00Z"
+    },
+    "budget": 18000,
+    "assignedInfluencers": [
+      {
+        "id": "inf-4",
+        "name": "David Kim",
+        "avatar": "https://i.pravatar.cc/150?u=david"
+      }
+    ],
+    "contentApprovalStatus": "Approved"
+  }
+]

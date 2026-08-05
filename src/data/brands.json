@@ -1,0 +1,42 @@
+[
+  {
+    "id": "brand-1",
+    "name": "Lumina Tech",
+    "logo": "https://ui-avatars.com/api/?name=Lumina+Tech&background=4F46E5&color=fff",
+    "industry": "Consumer Electronics",
+    "campaignsPosted": 14,
+    "activeCampaigns": 3
+  },
+  {
+    "id": "brand-2",
+    "name": "FitCore Apparel",
+    "logo": "https://ui-avatars.com/api/?name=FitCore+Apparel&background=10B981&color=fff",
+    "industry": "Fitness Apparel",
+    "campaignsPosted": 42,
+    "activeCampaigns": 8
+  },
+  {
+    "id": "brand-3",
+    "name": "Glow Cosmetics",
+    "logo": "https://ui-avatars.com/api/?name=Glow+Cosmetics&background=EC4899&color=fff",
+    "industry": "Beauty & Skincare",
+    "campaignsPosted": 27,
+    "activeCampaigns": 5
+  },
+  {
+    "id": "brand-4",
+    "name": "FreshBite Delivery",
+    "logo": "https://ui-avatars.com/api/?name=FreshBite+Delivery&background=F59E0B&color=fff",
+    "industry": "Food & Beverage",
+    "campaignsPosted": 8,
+    "activeCampaigns": 1
+  },
+  {
+    "id": "brand-5",
+    "name": "Wanderlust Gear",
+    "logo": "https://ui-avatars.com/api/?name=Wanderlust+Gear&background=06B6D4&color=fff",
+    "industry": "Travel & Outdoors",
+    "campaignsPosted": 19,
+    "activeCampaigns": 2
+  }
+]

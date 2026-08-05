@@ -1,0 +1,37 @@
+[
+  {
+    "id": "notif-1",
+    "type": "message",
+    "message": "Sarah Jenkins sent you a new message regarding 'Lumina Pro X Launch'.",
+    "timestamp": "2024-03-05T09:30:00Z",
+    "read": false
+  },
+  {
+    "id": "notif-2",
+    "type": "campaign",
+    "message": "Content for 'Summer Shred Challenge' has been submitted for approval by Marcus Chen.",
+    "timestamp": "2024-05-12T14:15:00Z",
+    "read": false
+  },
+  {
+    "id": "notif-3",
+    "type": "alert",
+    "message": "Your campaign 'Flawless Base Routine' is missing a signed contract.",
+    "timestamp": "2024-07-02T08:45:00Z",
+    "read": true
+  },
+  {
+    "id": "notif-4",
+    "type": "system",
+    "message": "Platform maintenance scheduled for this Sunday at 2 AM EST.",
+    "timestamp": "2024-02-28T11:00:00Z",
+    "read": true
+  },
+  {
+    "id": "notif-5",
+    "type": "campaign",
+    "message": "Campaign 'Eco-Friendly Fall Collection' has officially ended. Please review final analytics.",
+    "timestamp": "2023-11-01T10:00:00Z",
+    "read": true
+  }
+]

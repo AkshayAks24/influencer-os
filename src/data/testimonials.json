@@ -1,0 +1,42 @@
+[
+  {
+    "id": "test-1",
+    "name": "Amanda Rivera",
+    "role": "VP of Marketing",
+    "company": "Glow Cosmetics",
+    "quote": "InfluencerOS completely transformed our influencer discovery process. We found perfect matches in half the time, and our campaign ROI increased by 40% in just one quarter.",
+    "avatar": "https://i.pravatar.cc/150?u=amanda"
+  },
+  {
+    "id": "test-2",
+    "name": "Jason Thorne",
+    "role": "Founder & CEO",
+    "company": "FitCore Apparel",
+    "quote": "Managing 50+ creators used to be a logistical nightmare. Now, with the unified dashboard and automated payments, my team saves almost 20 hours a week.",
+    "avatar": "https://i.pravatar.cc/150?u=jason"
+  },
+  {
+    "id": "test-3",
+    "name": "Elena Rodriguez",
+    "role": "Beauty Creator",
+    "company": "3.2M Followers",
+    "quote": "As a creator, getting paid on time and having clear briefs is everything. InfluencerOS makes working with top brands smooth, professional, and transparent.",
+    "avatar": "https://i.pravatar.cc/150?u=elena"
+  },
+  {
+    "id": "test-4",
+    "name": "Michael Chen",
+    "role": "Director of Growth",
+    "company": "Lumina Tech",
+    "quote": "The predictive analytics feature is a game-changer. Being able to forecast a campaign's performance before we even sign the contract gives us incredible confidence.",
+    "avatar": "https://i.pravatar.cc/150?u=michael"
+  },
+  {
+    "id": "test-5",
+    "name": "Sarah Jenkins",
+    "role": "Tech Reviewer",
+    "company": "1.2M YouTube Subs",
+    "quote": "I've tried many platforms, but InfluencerOS actually brings me brands that align with my audience. It's the only platform I use daily now.",
+    "avatar": "https://i.pravatar.cc/150?u=sarah"
+  }
+]

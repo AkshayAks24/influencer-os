@@ -1,0 +1,46 @@
+[
+  {
+    "id": "plan-1",
+    "name": "Starter",
+    "price": 299,
+    "billingCycle": "monthly",
+    "features": [
+      "Access to 10k+ vetted influencers",
+      "Up to 3 active campaigns",
+      "Basic analytics dashboard",
+      "Standard email support",
+      "Automated contract templates"
+    ],
+    "highlighted": false
+  },
+  {
+    "id": "plan-2",
+    "name": "Pro",
+    "price": 799,
+    "billingCycle": "monthly",
+    "features": [
+      "Access to 50k+ vetted influencers",
+      "Unlimited active campaigns",
+      "Advanced predictive analytics",
+      "Dedicated account manager",
+      "Custom contract uploads",
+      "Automated payment escrow"
+    ],
+    "highlighted": true
+  },
+  {
+    "id": "plan-3",
+    "name": "Enterprise",
+    "price": 2499,
+    "billingCycle": "monthly",
+    "features": [
+      "Global network of 250k+ creators",
+      "API access & CRM integrations",
+      "White-labeled reporting",
+      "24/7 priority phone support",
+      "Custom workflow automation",
+      "Strategic campaign planning"
+    ],
+    "highlighted": false
+  }
+]

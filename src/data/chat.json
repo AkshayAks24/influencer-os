@@ -1,0 +1,42 @@
+[
+  {
+    "id": "msg-1",
+    "senderId": "inf-1",
+    "senderName": "Sarah Jenkins",
+    "message": "Hi team! I just received the Lumina Pro X. The packaging is gorgeous. I'm planning to shoot the unboxing video tomorrow.",
+    "timestamp": "2024-03-04T10:15:00Z",
+    "isOwnMessage": false
+  },
+  {
+    "id": "msg-2",
+    "senderId": "brand-1",
+    "senderName": "Lumina Tech",
+    "message": "That's great to hear, Sarah! Please make sure to highlight the new auto-focus tracking feature during the unboxing.",
+    "timestamp": "2024-03-04T10:22:00Z",
+    "isOwnMessage": true
+  },
+  {
+    "id": "msg-3",
+    "senderId": "inf-1",
+    "senderName": "Sarah Jenkins",
+    "message": "Absolutely. I've already scripted a section comparing it to the previous model's focus. Should I send the draft script over for a quick review?",
+    "timestamp": "2024-03-04T10:25:00Z",
+    "isOwnMessage": false
+  },
+  {
+    "id": "msg-4",
+    "senderId": "brand-1",
+    "senderName": "Lumina Tech",
+    "message": "Yes please! You can drop it right here in the chat.",
+    "timestamp": "2024-03-04T10:28:00Z",
+    "isOwnMessage": true
+  },
+  {
+    "id": "msg-5",
+    "senderId": "inf-1",
+    "senderName": "Sarah Jenkins",
+    "message": "Just uploaded the PDF to the campaign deliverables tab. Let me know what you think!",
+    "timestamp": "2024-03-05T09:30:00Z",
+    "isOwnMessage": false
+  }
+]
