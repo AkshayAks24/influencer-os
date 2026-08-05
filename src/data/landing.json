@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "headline": "The All-in-One Operating System for Influencer Marketing",
+    "subheadline": "Streamline discovery, manage campaigns, automate payments, and measure ROI—all from a single, powerful dashboard designed for modern brands and top creators.",
+    "ctaPrimary": "Get Started",
+    "ctaSecondary": "Book a Demo"
+  },
+  "productOverview": [
+    {
+      "title": "Unified Workspace",
+      "description": "Stop jumping between spreadsheets, emails, and payment platforms. Manage the entire creator lifecycle in one place."
+    },
+    {
+      "title": "Predictive Analytics",
+      "description": "Forecast campaign performance before you spend a dime using our proprietary AI model trained on millions of data points."
+    },
+    {
+      "title": "Automated Payments",
+      "description": "Escrow payments ensure creators get paid instantly upon deliverable approval, while brands stay protected."
+    }
+  ],
+  "problemsSolutions": {
+    "problem": {
+      "title": "The Old Way",
+      "points": [
+        "Endless email threads to negotiate rates",
+        "Scattered spreadsheets for tracking deliverables",
+        "Manual tracking of post performance and ROI",
+        "Delayed invoices and payment disputes"
+      ]
+    },
+    "solution": {
+      "title": "With InfluencerOS",
+      "points": [
+        "In-app messaging and transparent pricing",
+        "Automated content approval workflows",
+        "Real-time analytics dashboard with API sync",
+        "Instant payouts via secure escrow"
+      ]
+    }
+  },
+  "features": [
+    {
+      "id": "discovery",
+      "title": "Smart Discovery",
+      "description": "Find vetted creators using AI that matches audience demographics to your exact ideal customer profile.",
+      "icon": "FiSearch"
+    },
+    {
+      "id": "crm",
+      "title": "Creator CRM",
+      "description": "Keep track of relationships, past campaign performance, and custom notes for every influencer you work with.",
+      "icon": "FiUsers"
+    },
+    {
+      "id": "contracts",
+      "title": "Auto-Contracts",
+      "description": "Generate legally binding agreements in seconds with dynamic templates based on campaign deliverables.",
+      "icon": "FiFileText"
+    },
+    {
+      "id": "tracking",
+      "title": "Real-time Tracking",
+      "description": "Live dashboards that pull directly from Instagram, TikTok, and YouTube APIs for accurate reporting.",
+      "icon": "FiActivity"
+    },
+    {
+      "id": "payments",
+      "title": "Global Payments",
+      "description": "Pay creators in 135+ currencies automatically when content goes live.",
+      "icon": "FiDollarSign"
+    },
+    {
+      "id": "reports",
+      "title": "Client Reporting",
+      "description": "Generate white-labeled, beautiful ROI reports for your stakeholders with one click.",
+      "icon": "FiPieChart"
+    }
+  ],
+  "faq": [
+    {
+      "id": "faq-1",
+      "question": "How do you vet the influencers on your platform?",
+      "answer": "Every creator goes through a rigorous multi-step verification process. We analyze audience authenticity, historical engagement rates, and require identity verification to ensure you only work with genuine professionals."
+    },
+    {
+      "id": "faq-2",
+      "question": "Does InfluencerOS integrate with Shopify?",
+      "answer": "Yes! Our platform integrates seamlessly with Shopify, WooCommerce, and Magento to track direct sales conversions and automatically calculate accurate ROI for each creator."
+    },
+    {
+      "id": "faq-3",
+      "question": "What happens if a creator misses a deadline?",
+      "answer": "Our escrow system protects your budget. If deliverables are not met according to the agreed-upon timeline and contract terms, funds are automatically returned to your brand wallet."
+    },
+    {
+      "id": "faq-4",
+      "question": "Can I invite my existing roster of influencers?",
+      "answer": "Absolutely. You can import your current creators via CSV or private invite links, and manage them entirely within InfluencerOS for free."
+    },
+    {
+      "id": "faq-5",
+      "question": "What is the typical onboarding time?",
+      "answer": "Most brands are fully set up and launching their first campaign within 24 hours. Our Enterprise plan includes a dedicated account manager who handles the entire onboarding process for you."
+    }
+  ]
+}

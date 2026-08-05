@@ -1,14 +1,22 @@
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { LandingPage } from "@/pages/LandingPage";
 import { StatCard } from "@/components/common/StatCard";
 import { FiUsers, FiDollarSign, FiActivity } from "react-icons/fi";
 
-function App() {
+function Playground() {
   return (
     <div className="min-h-screen bg-background p-8 font-sans">
       <div className="mx-auto max-w-5xl">
-        <h1 className="mb-8 text-3xl font-bold tracking-tight text-foreground">
-          Dashboard Overview
-        </h1>
+        <div className="mb-8 flex items-center justify-between">
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">
+            Component Playground
+          </h1>
+          <Link to="/" className="text-primary hover:underline">
+            Back to Home
+          </Link>
+        </div>
         
+        <h2 className="text-xl font-semibold mb-4">StatCards</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <StatCard
             label="Total Influencers"
@@ -43,6 +51,17 @@ function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/playground" element={<Playground />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

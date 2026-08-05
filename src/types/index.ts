@@ -104,3 +104,48 @@ export interface ChatMessage {
   timestamp: string;
   isOwnMessage: boolean;
 }
+
+// Landing Page Data Types
+export interface LandingHero {
+  headline: string;
+  subheadline: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+}
+
+export interface LandingProductOverview {
+  title: string;
+  description: string;
+}
+
+export interface LandingProblemsSolutions {
+  problem: {
+    title: string;
+    points: string[];
+  };
+  solution: {
+    title: string;
+    points: string[];
+  };
+}
+
+export interface LandingFeature {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface LandingFAQ {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+export interface LandingData {
+  hero: LandingHero;
+  productOverview: LandingProductOverview[];
+  problemsSolutions: LandingProblemsSolutions;
+  features: LandingFeature[];
+  faq: LandingFAQ[];
+}
