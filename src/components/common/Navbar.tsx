@@ -19,9 +19,9 @@ export function Navbar() {
             <a href="#features" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               Features
             </a>
-            <a href="#pricing" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+            <Link to="/pricing" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               Pricing
-            </a>
+            </Link>
             <a href="#faq" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               FAQ
             </a>

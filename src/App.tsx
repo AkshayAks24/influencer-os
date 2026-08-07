@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { LandingPage } from "@/pages/LandingPage";
+import { Pricing } from "@/pages/Pricing";
 import { StatCard } from "@/components/common/StatCard";
 import { FiUsers, FiDollarSign, FiActivity } from "react-icons/fi";
 
@@ -59,6 +60,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/playground" element={<Playground />} />
       </Routes>
     </BrowserRouter>

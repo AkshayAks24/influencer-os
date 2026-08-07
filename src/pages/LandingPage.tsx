@@ -6,7 +6,7 @@ import { ProblemsSolutions } from "@/components/landing/ProblemsSolutions"
 import { FeatureHighlights } from "@/components/landing/FeatureHighlights"
 import { PricingPreview } from "@/components/landing/PricingPreview"
 import { Testimonials } from "@/components/landing/Testimonials"
-import { FAQ } from "@/components/landing/FAQ"
+import { FAQ } from "@/components/common/FAQ"
 
 // Import Mock Data
 import landingDataRaw from "@/data/landing.json"
