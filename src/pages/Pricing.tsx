@@ -1,12 +1,9 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { FiCheck } from "react-icons/fi"
 
-import { Navbar } from "@/components/common/Navbar"
-import { Footer } from "@/components/common/Footer"
+
 import { FAQ } from "@/components/common/FAQ"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { PricingCard } from "@/components/common/PricingCard"
 import { Badge } from "@/components/ui/badge"
 import { EmptyState } from "@/components/common/EmptyState"
 
@@ -23,26 +20,19 @@ export function Pricing() {
   // Empty state guard for robust future API integration
   if (!pricingData || pricingData.length === 0) {
     return (
-      <div className="min-h-screen flex flex-col font-sans text-foreground bg-background">
-        <Navbar />
-        <main className="flex-1 container mx-auto py-24 px-4">
-          <EmptyState
-            title="No Pricing Plans Available"
-            description="We're currently updating our pricing tiers. Please check back later."
-          />
-        </main>
-        <Footer />
+      <div className="container mx-auto py-24 px-4">
+        <EmptyState
+          title="No Pricing Plans Available"
+          description="We're currently updating our pricing tiers. Please check back later."
+        />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-foreground bg-background">
-      <Navbar />
-      
-      <main className="flex-1">
-        {/* Header Section */}
-        <section className="py-16 md:py-20 bg-background">
+    <>
+      {/* Header Section */}
+      <section className="py-16 md:py-20 bg-background">
           <div className="container mx-auto px-4 md:px-6">
             <div className="mb-12 text-center max-w-[800px] mx-auto">
               <motion.h1 
@@ -98,74 +88,22 @@ export function Pricing() {
 
             {/* Pricing Cards */}
             <div className="grid gap-8 md:grid-cols-3 max-w-5xl mx-auto">
-              {pricingData.map((plan, index) => {
-                const displayPrice = isAnnual ? plan.price * 10 : plan.price;
-                
-                return (
-                  <motion.div
-                    key={plan.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
-                    className="flex h-full"
-                  >
-                    <Card 
-                      className={`relative flex flex-col w-full h-full transition-all duration-300 hover:-translate-y-1 ${
-                        plan.highlighted 
-                          ? "border-primary shadow-xl hover:shadow-2xl hover:shadow-primary/20 scale-105 z-10" 
-                          : "border-border shadow-sm hover:shadow-lg hover:border-primary/50"
-                      }`}
-                    >
-                      {plan.highlighted && (
-                        <div className="absolute -top-4 left-0 right-0 flex justify-center">
-                          <Badge className="bg-primary text-primary-foreground font-bold px-4 py-1.5 uppercase tracking-wider text-xs shadow-md">
-                            Most Popular
-                          </Badge>
-                        </div>
-                      )}
-                      <CardHeader className="pb-8">
-                        <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                        <CardDescription>
-                          <span className="text-5xl font-bold text-foreground">${displayPrice}</span>
-                          <span className="text-muted-foreground font-medium ml-1">/{isAnnual ? 'yr' : 'mo'}</span>
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="flex-1">
-                        <ul className="space-y-4 text-sm text-muted-foreground">
-                          {plan.features.map((feature, i) => (
-                            <li key={i} className="flex items-start">
-                              <FiCheck className="mr-3 h-5 w-5 text-primary shrink-0 mt-0.5" />
-                              <span className="leading-relaxed">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                      <CardFooter>
-                        <Button 
-                          className={`w-full font-semibold h-12 transition-all ${
-                            plan.highlighted ? "shadow-md hover:shadow-lg" : ""
-                          }`} 
-                          variant={plan.highlighted ? "default" : "outline"}
-                          size="lg"
-                        >
-                          Get Started
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
-                )
-              })}
+              {pricingData.map((plan, index) => (
+                <PricingCard 
+                  key={plan.id} 
+                  plan={plan} 
+                  isAnnual={isAnnual} 
+                  index={index} 
+                />
+              ))}
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <div className="bg-secondary/30">
-          <FAQ data={landingData.faq} />
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+      {/* FAQ Section */}
+      <div className="bg-secondary/30">
+        <FAQ data={landingData.faq} />
+      </div>
+    </>
   )
 }
