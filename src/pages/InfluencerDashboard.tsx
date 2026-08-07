@@ -77,7 +77,7 @@ export function InfluencerDashboard() {
           </p>
         </div>
         <Button className="shrink-0" asChild>
-          <Link to="/discovery">Find Brands</Link>
+          <Link to="/campaigns">Find Brands</Link>
         </Button>
       </div>
 

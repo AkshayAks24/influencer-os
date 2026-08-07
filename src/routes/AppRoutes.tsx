@@ -11,6 +11,8 @@ import { NotFound } from "@/pages/NotFound"
 import { BrandDashboard } from "@/pages/BrandDashboard"
 import { InfluencerDashboard } from "@/pages/InfluencerDashboard"
 
+import { Discovery } from "@/pages/Discovery"
+
 // Placeholder component for unimplemented pages
 const Placeholder = ({ name }: { name: string }) => (
   <div className="flex h-full items-center justify-center p-8 text-muted-foreground">
@@ -39,7 +41,8 @@ export function AppRoutes() {
           {/* Brand Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={["brand"]} />}>
             <Route path="/brand/dashboard" element={<BrandDashboard />} />
-            <Route path="/discovery" element={<Placeholder name="Discovery" />} />
+            <Route path="/discovery" element={<Discovery />} />
+            <Route path="/campaigns/new" element={<Placeholder name="Create Campaign" />} />
           </Route>
 
           {/* Influencer Only Routes */}
@@ -48,6 +51,7 @@ export function AppRoutes() {
           </Route>
 
           {/* Shared Authenticated Routes */}
+          <Route path="/campaigns" element={<Placeholder name="Campaigns & Brands" />} />
           <Route path="/profile/:id" element={<Placeholder name="Profile" />} />
           <Route path="/campaign/:id" element={<Placeholder name="Campaign Details" />} />
           <Route path="/settings" element={<Placeholder name="Settings" />} />

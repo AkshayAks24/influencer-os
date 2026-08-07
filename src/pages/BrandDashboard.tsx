@@ -76,9 +76,16 @@ export function BrandDashboard() {
             Here's what's happening with your influencer campaigns today.
           </p>
         </div>
-        <Button className="shrink-0" onClick={() => console.log("New Campaign")}>
-          <FiPlus className="mr-2 h-4 w-4" /> Create Campaign
-        </Button>
+        <div className="flex gap-3">
+          <Button variant="outline" className="shrink-0" asChild>
+            <Link to="/discovery">Find Influencers</Link>
+          </Button>
+          <Button className="shrink-0" asChild>
+            <Link to="/campaigns/new">
+              <FiPlus className="mr-2 h-4 w-4" /> Create Campaign
+            </Link>
+          </Button>
+        </div>
       </div>
 
       {/* 2. Analytics Cards Row */}
