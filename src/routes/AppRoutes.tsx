@@ -1,8 +1,13 @@
 import { Routes, Route } from "react-router-dom"
 import { PublicLayout } from "@/layouts/PublicLayout"
 import { DashboardLayout } from "@/layouts/DashboardLayout"
+import { ProtectedRoute } from "@/components/common/ProtectedRoute"
 import { LandingPage } from "@/pages/LandingPage"
 import { Pricing } from "@/pages/Pricing"
+import { Login } from "@/pages/Login"
+import { Register } from "@/pages/Register"
+import { ForgotPassword } from "@/pages/ForgotPassword"
+import { NotFound } from "@/pages/NotFound"
 
 // Placeholder component for unimplemented pages
 const Placeholder = ({ name }: { name: string }) => (
@@ -21,25 +26,36 @@ export function AppRoutes() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<LandingPage />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/login" element={<Placeholder name="Login" />} />
-        <Route path="/register" element={<Placeholder name="Register" />} />
-        <Route path="/forgot-password" element={<Placeholder name="Forgot Password" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Route>
 
-      {/* Dashboard Routes */}
-      <Route element={<DashboardLayout />}>
-        <Route path="/brand/dashboard" element={<Placeholder name="Brand Dashboard" />} />
-        <Route path="/influencer/dashboard" element={<Placeholder name="Influencer Dashboard" />} />
-        <Route path="/discovery" element={<Placeholder name="Discovery" />} />
-        <Route path="/profile/:id" element={<Placeholder name="Profile" />} />
-        <Route path="/campaign/:id" element={<Placeholder name="Campaign Details" />} />
-        <Route path="/settings" element={<Placeholder name="Settings" />} />
-        <Route path="/notifications" element={<Placeholder name="Notifications" />} />
-        <Route path="/chat" element={<Placeholder name="Chat" />} />
+      {/* Authenticated Dashboard Routes */}
+      <Route element={<ProtectedRoute />}>
+        <Route element={<DashboardLayout />}>
+          {/* Brand Only Routes */}
+          <Route element={<ProtectedRoute allowedRoles={["brand"]} />}>
+            <Route path="/brand/dashboard" element={<Placeholder name="Brand Dashboard" />} />
+            <Route path="/discovery" element={<Placeholder name="Discovery" />} />
+          </Route>
+
+          {/* Influencer Only Routes */}
+          <Route element={<ProtectedRoute allowedRoles={["influencer"]} />}>
+            <Route path="/influencer/dashboard" element={<Placeholder name="Influencer Dashboard" />} />
+          </Route>
+
+          {/* Shared Authenticated Routes */}
+          <Route path="/profile/:id" element={<Placeholder name="Profile" />} />
+          <Route path="/campaign/:id" element={<Placeholder name="Campaign Details" />} />
+          <Route path="/settings" element={<Placeholder name="Settings" />} />
+          <Route path="/notifications" element={<Placeholder name="Notifications" />} />
+          <Route path="/chat" element={<Placeholder name="Chat" />} />
+        </Route>
       </Route>
       
       {/* Fallback */}
-      <Route path="*" element={<Placeholder name="404 Not Found" />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
