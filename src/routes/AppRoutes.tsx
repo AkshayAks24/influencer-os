@@ -9,6 +9,7 @@ import { Register } from "@/pages/Register"
 import { ForgotPassword } from "@/pages/ForgotPassword"
 import { NotFound } from "@/pages/NotFound"
 import { BrandDashboard } from "@/pages/BrandDashboard"
+import { InfluencerDashboard } from "@/pages/InfluencerDashboard"
 
 // Placeholder component for unimplemented pages
 const Placeholder = ({ name }: { name: string }) => (
@@ -43,7 +44,7 @@ export function AppRoutes() {
 
           {/* Influencer Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={["influencer"]} />}>
-            <Route path="/influencer/dashboard" element={<Placeholder name="Influencer Dashboard" />} />
+            <Route path="/influencer/dashboard" element={<InfluencerDashboard />} />
           </Route>
 
           {/* Shared Authenticated Routes */}
