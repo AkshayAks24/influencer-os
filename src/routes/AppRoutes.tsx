@@ -13,6 +13,8 @@ import { InfluencerDashboard } from "@/pages/InfluencerDashboard"
 
 import { Discovery } from "@/pages/Discovery"
 
+import { InfluencerProfile } from "@/pages/InfluencerProfile"
+
 // Placeholder component for unimplemented pages
 const Placeholder = ({ name }: { name: string }) => (
   <div className="flex h-full items-center justify-center p-8 text-muted-foreground">
@@ -52,7 +54,7 @@ export function AppRoutes() {
 
           {/* Shared Authenticated Routes */}
           <Route path="/campaigns" element={<Placeholder name="Campaigns & Brands" />} />
-          <Route path="/profile/:id" element={<Placeholder name="Profile" />} />
+          <Route path="/profile/:id" element={<InfluencerProfile />} />
           <Route path="/campaign/:id" element={<Placeholder name="Campaign Details" />} />
           <Route path="/settings" element={<Placeholder name="Settings" />} />
           <Route path="/notifications" element={<Placeholder name="Notifications" />} />
