@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react"
+import { Link } from "react-router-dom"
 import { FiSearch, FiFilter, FiCheckCircle, FiX, FiMapPin, FiInstagram, FiYoutube, FiVideo } from "react-icons/fi"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -360,8 +361,10 @@ export function Discovery() {
               </div>
 
               <div className="p-6 border-t mt-auto bg-muted/10 sticky bottom-0">
-                <Button className="w-full h-12 text-base font-semibold">
-                  View Full Profile
+                <Button className="w-full h-12 text-base font-semibold" asChild>
+                  <Link to={`/profile/${selectedInfluencer.id}`}>
+                    View Full Profile
+                  </Link>
                 </Button>
               </div>
             </motion.div>

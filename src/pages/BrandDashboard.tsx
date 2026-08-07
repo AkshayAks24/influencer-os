@@ -77,9 +77,6 @@ export function BrandDashboard() {
           </p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="shrink-0" asChild>
-            <Link to="/discovery">Find Influencers</Link>
-          </Button>
           <Button className="shrink-0" asChild>
             <Link to="/campaigns/new">
               <FiPlus className="mr-2 h-4 w-4" /> Create Campaign

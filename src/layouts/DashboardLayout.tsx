@@ -1,11 +1,64 @@
-import { useState } from "react"
-import { Outlet, Link } from "react-router-dom"
-import { FiMenu, FiX } from "react-icons/fi"
+import { useState, useRef, useEffect } from "react"
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom"
+import { FiMenu, FiX, FiHome, FiSearch, FiSettings, FiBell, FiMessageSquare, FiLogOut, FiChevronDown, FiUser } from "react-icons/fi"
 import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/contexts/AuthContext"
 
 export function DashboardLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { currentUser, logout } = useAuth()
+  
+  const profileRef = useRef<HTMLDivElement>(null)
+
+  // Close profile dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  const navItems = [
+    {
+      name: "Dashboard",
+      path: currentUser?.role === "brand" ? "/brand/dashboard" : "/influencer/dashboard",
+      icon: <FiHome className="h-5 w-5" />,
+      showFor: ["brand", "influencer"]
+    },
+    {
+      name: "Discovery",
+      path: "/discovery",
+      icon: <FiSearch className="h-5 w-5" />,
+      showFor: ["brand"]
+    },
+    {
+      name: "Chat",
+      path: "/chat",
+      icon: <FiMessageSquare className="h-5 w-5" />,
+      showFor: ["brand", "influencer"]
+    },
+    {
+      name: "Settings",
+      path: "/settings",
+      icon: <FiSettings className="h-5 w-5" />,
+      showFor: ["brand", "influencer"]
+    }
+  ]
+
+  const visibleNavItems = navItems.filter(item => item.showFor.includes(currentUser?.role || ""))
+
+  const handleLogout = () => {
+    logout()
+    navigate("/login")
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-background font-sans text-foreground">
@@ -41,26 +94,88 @@ export function DashboardLayout() {
             <FiX className="h-5 w-5" />
           </Button>
         </div>
-        <div className="p-4 flex-1 overflow-y-auto">
-          <div className="text-sm text-muted-foreground p-2">Sidebar — coming soon</div>
+        <div className="p-4 flex-1 overflow-y-auto space-y-1">
+          {visibleNavItems.map((item) => {
+            const isActive = location.pathname.startsWith(item.path)
+            return (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors text-sm font-medium",
+                  isActive 
+                    ? "bg-primary/10 text-primary" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                )}
+              >
+                {item.icon}
+                {item.name}
+              </Link>
+            )
+          })}
         </div>
       </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Top bar Placeholder */}
-        <header className="h-16 border-b bg-card flex items-center px-4 md:px-6 shrink-0 gap-4">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="md:hidden"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <FiMenu className="h-5 w-5" />
-          </Button>
-          <div className="flex-1 flex justify-between items-center">
-            <div className="text-sm font-medium">Dashboard</div>
-            <div className="text-sm text-muted-foreground hidden sm:block">Top bar — coming soon</div>
+        {/* Top bar */}
+        <header className="h-16 border-b bg-card flex items-center px-4 md:px-6 shrink-0 gap-4 justify-between">
+          <div className="flex items-center">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden mr-2"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <FiMenu className="h-5 w-5" />
+            </Button>
+            <div className="text-sm font-medium capitalize hidden sm:block">
+              {location.pathname.split('/').filter(Boolean)[0] || 'Dashboard'}
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <Link to="/notifications" className="text-muted-foreground hover:text-foreground relative">
+              <FiBell className="h-5 w-5" />
+              <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+            </Link>
+            
+            <div className="relative" ref={profileRef}>
+              <button 
+                className="flex items-center gap-2 hover:bg-secondary/50 p-1.5 rounded-md transition-colors"
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+              >
+                <Avatar className="h-8 w-8 border">
+                  <AvatarImage src={currentUser?.avatar} alt={currentUser?.name} />
+                  <AvatarFallback>{currentUser?.name?.charAt(0) || <FiUser />}</AvatarFallback>
+                </Avatar>
+                <span className="text-sm font-medium hidden sm:block">{currentUser?.name}</span>
+                <FiChevronDown className="h-4 w-4 text-muted-foreground hidden sm:block" />
+              </button>
+
+              {isProfileOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-card border rounded-md shadow-lg py-1 z-50">
+                  <div className="px-4 py-2 border-b">
+                    <p className="text-sm font-medium truncate">{currentUser?.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">{currentUser?.email}</p>
+                  </div>
+                  <Link 
+                    to="/settings" 
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-secondary"
+                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    <FiSettings className="h-4 w-4" /> Settings
+                  </Link>
+                  <button 
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
+                  >
+                    <FiLogOut className="h-4 w-4" /> Log out
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </header>
 
