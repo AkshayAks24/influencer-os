@@ -12,7 +12,7 @@ export interface User {
 
 interface AuthContextType {
   currentUser: User | null;
-  login: (email: string, password: string, role?: Role) => Promise<User>;
+  login: (email: string, password: string, role?: Role, name?: string) => Promise<User>;
   logout: () => void;
   isLoading: boolean;
 }
@@ -23,14 +23,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const login = async (email: string, _password: string, role: Role = "brand") => {
+  const login = async (email: string, _password: string, role: Role = "brand", name?: string) => {
     setIsLoading(true);
     // Simulate network delay
     await new Promise((resolve) => setTimeout(resolve, 800));
     
     const user: User = {
       id: `usr_${Math.random().toString(36).substr(2, 9)}`,
-      name: email.split("@")[0],
+      name: name || email.split("@")[0],
       email,
       role,
     };

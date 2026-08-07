@@ -41,7 +41,7 @@ export function Register() {
     setIsLoading(true)
     setApiError("")
     try {
-      const user = await login(data.email, data.password, selectedRole)
+      const user = await login(data.email, data.password, selectedRole, data.name)
       
       if (user.role === "brand") {
         navigate("/brand/dashboard", { replace: true })

@@ -8,6 +8,7 @@ import { Login } from "@/pages/Login"
 import { Register } from "@/pages/Register"
 import { ForgotPassword } from "@/pages/ForgotPassword"
 import { NotFound } from "@/pages/NotFound"
+import { BrandDashboard } from "@/pages/BrandDashboard"
 
 // Placeholder component for unimplemented pages
 const Placeholder = ({ name }: { name: string }) => (
@@ -36,7 +37,7 @@ export function AppRoutes() {
         <Route element={<DashboardLayout />}>
           {/* Brand Only Routes */}
           <Route element={<ProtectedRoute allowedRoles={["brand"]} />}>
-            <Route path="/brand/dashboard" element={<Placeholder name="Brand Dashboard" />} />
+            <Route path="/brand/dashboard" element={<BrandDashboard />} />
             <Route path="/discovery" element={<Placeholder name="Discovery" />} />
           </Route>
 
