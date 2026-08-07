@@ -13,18 +13,18 @@ export function Navbar() {
             <span className="inline-block font-bold">InfluencerOS</span>
           </Link>
           <div className="hidden md:flex gap-6">
-            <a href="#product" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+            <Link to="/#product" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               Product
-            </a>
-            <a href="#features" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+            </Link>
+            <Link to="/#features" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               Features
-            </a>
+            </Link>
             <Link to="/pricing" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               Pricing
             </Link>
-            <a href="#faq" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+            <Link to="/#faq" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               FAQ
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
