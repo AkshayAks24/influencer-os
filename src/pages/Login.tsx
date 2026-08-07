@@ -11,6 +11,12 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader } from "@/components/common/Loader"
 
+interface LoginFormData {
+  email: string
+  password: string
+  remember: boolean
+}
+
 export function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
@@ -19,7 +25,7 @@ export function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const [apiError, setApiError] = useState("")
   
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
     defaultValues: {
       email: "",
       password: "",
@@ -27,7 +33,7 @@ export function Login() {
     }
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true)
     setApiError("")
     try {

@@ -10,18 +10,22 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader } from "@/components/common/Loader"
 
+interface ForgotPasswordFormData {
+  email: string
+}
+
 export function ForgotPassword() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [apiError, setApiError] = useState("")
   
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormData>({
     defaultValues: {
       email: ""
     }
   })
 
-  const onSubmit = async (_data: any) => {
+  const onSubmit = async (_data: ForgotPasswordFormData) => {
     setIsLoading(true)
     setApiError("")
     try {

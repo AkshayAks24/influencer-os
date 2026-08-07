@@ -13,6 +13,13 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader } from "@/components/common/Loader"
 import { cn } from "@/lib/utils"
 
+interface RegisterFormData {
+  name: string
+  email: string
+  password: string
+  terms: boolean
+}
+
 export function Register() {
   const { login } = useAuth()
   const navigate = useNavigate()
@@ -21,7 +28,7 @@ export function Register() {
   const [apiError, setApiError] = useState("")
   const [selectedRole, setSelectedRole] = useState<Role>("brand")
   
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormData>({
     defaultValues: {
       name: "",
       email: "",
@@ -30,7 +37,7 @@ export function Register() {
     }
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: RegisterFormData) => {
     setIsLoading(true)
     setApiError("")
     try {
