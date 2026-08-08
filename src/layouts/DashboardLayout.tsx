@@ -81,7 +81,7 @@ export function DashboardLayout() {
         )}
       >
         <div className="h-16 flex items-center justify-between px-6 border-b shrink-0">
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center space-x-2">
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="font-bold text-primary-foreground text-xl leading-none">I</span>
             </div>
@@ -138,7 +138,11 @@ export function DashboardLayout() {
           </div>
           
           <div className="flex items-center gap-4">
-            <Link to="/notifications" className="text-muted-foreground hover:text-foreground relative">
+            <Link 
+              to="/notifications" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-muted-foreground hover:text-foreground relative"
+            >
               <FiBell className="h-5 w-5" />
               {unreadCount > 0 && (
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
@@ -165,9 +169,22 @@ export function DashboardLayout() {
                     <p className="text-xs text-muted-foreground truncate">{currentUser?.email}</p>
                   </div>
                   <Link 
-                    to="/settings" 
+                    to={`/profile/${currentUser?.id || "me"}`} 
+                    onClick={() => {
+                      setIsProfileOpen(false)
+                      setIsMobileMenuOpen(false)
+                    }}
                     className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-secondary"
-                    onClick={() => setIsProfileOpen(false)}
+                  >
+                    <FiUser className="h-4 w-4" /> Profile
+                  </Link>
+                  <Link 
+                    to="/settings" 
+                    onClick={() => {
+                      setIsProfileOpen(false)
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-foreground hover:bg-secondary"
                   >
                     <FiSettings className="h-4 w-4" /> Settings
                   </Link>

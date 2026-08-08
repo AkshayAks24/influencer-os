@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { FiSearch, FiFilter, FiCheckCircle, FiX, FiMapPin, FiInstagram, FiYoutube, FiVideo } from "react-icons/fi"
 import { motion, AnimatePresence } from "framer-motion"
@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { EmptyState } from "@/components/common/EmptyState"
+import { Skeleton } from "@/components/common/Skeleton"
 
 import influencersData from "@/data/influencers.json"
 import type { Influencer } from "@/types"
@@ -20,8 +21,16 @@ export function Discovery() {
   const [minEngagement, setMinEngagement] = useState<number>(0)
   const [verifiedOnly, setVerifiedOnly] = useState(false)
   const [selectedInfluencer, setSelectedInfluencer] = useState<Influencer | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   const [showMobileFilters, setShowMobileFilters] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Get unique categories
   const categories = ["All", ...Array.from(new Set(influencersData.map(inf => inf.category)))]
@@ -203,86 +212,105 @@ export function Discovery() {
             )}
           </AnimatePresence>
 
-          {/* Results Grid */}
-          <div>
-            <div className="mb-4 text-sm text-muted-foreground font-medium">
-              Showing {filteredInfluencers.length} influencers
-            </div>
-
-            {filteredInfluencers.length === 0 ? (
-              <EmptyState
-                icon={<FiFilter className="h-8 w-8" />}
-                title="No influencers found"
-                description="Try adjusting your filters or search query to find more matches."
-                actionText="Clear Filters"
-                onAction={() => {
-                  setSearchQuery("")
-                  setSelectedCategory("All")
-                  setMinFollowers(0)
-                  setMinEngagement(0)
-                  setVerifiedOnly(false)
-                }}
-              />
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                {filteredInfluencers.map((inf, i) => (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    key={inf.id}
-                  >
-                    <Card className="h-full flex flex-col hover:border-primary/40 hover:shadow-md transition-all">
-                      <CardHeader className="pb-4">
-                        <div className="flex justify-between items-start gap-4">
-                          <div className="flex items-center gap-3">
-                            <img src={inf.avatar} alt={inf.name} className="w-12 h-12 rounded-full border bg-muted" />
-                            <div>
-                              <h3 className="font-semibold flex items-center gap-1">
-                                {inf.name}
-                                {inf.verified && <FiCheckCircle className="h-4 w-4 text-blue-500" />}
-                              </h3>
-                              <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                <FiMapPin className="h-3 w-3" /> {inf.location || "Global"}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="flex-1 pb-4">
-                        <Badge variant="secondary" className="mb-3">{inf.category}</Badge>
-                        <div className="grid grid-cols-2 gap-2 mt-2">
-                          <div className="bg-muted/50 p-2 rounded-lg text-center">
-                            <p className="text-xs text-muted-foreground mb-0.5">Followers</p>
-                            <p className="font-semibold">{formatNumber(getTotalFollowers(inf))}</p>
-                          </div>
-                          <div className="bg-muted/50 p-2 rounded-lg text-center">
-                            <p className="text-xs text-muted-foreground mb-0.5">Engagement</p>
-                            <p className="font-semibold">{inf.engagementRate}%</p>
-                          </div>
-                        </div>
-                        <div className="mt-4 flex items-center justify-between px-1">
-                          <span className="text-xs font-medium text-muted-foreground">Trust Score</span>
-                          <Badge variant="outline" className={inf.trustScore >= 90 ? "text-green-600 border-green-200 bg-green-50" : "text-yellow-600 border-yellow-200 bg-yellow-50"}>
-                            {inf.trustScore}/100
-                          </Badge>
-                        </div>
-                      </CardContent>
-                      <CardFooter>
-                        <Button
-                          className="w-full"
-                          variant="default"
-                          onClick={() => setSelectedInfluencer(inf)}
-                        >
-                          View Profile
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            )}
+          {/* Results Header */}
+          <div className="flex items-center justify-between">
+            <h2 className="font-semibold text-lg">
+              {isLoading ? "Searching..." : `${filteredInfluencers.length} Creators Found`}
+            </h2>
           </div>
+
+          {/* Results Grid */}
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <div key={i} className="flex p-4 rounded-xl border bg-card gap-4">
+                  <Skeleton className="h-16 w-16 rounded-full" />
+                  <div className="flex-1 space-y-2">
+                    <Skeleton className="h-5 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                    <div className="flex gap-2 mt-2 pt-2 border-t">
+                      <Skeleton className="h-4 w-1/4" />
+                      <Skeleton className="h-4 w-1/4" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : filteredInfluencers.length === 0 ? (
+            <EmptyState
+              icon={<FiSearch className="h-8 w-8" />}
+              title="No creators found"
+              description="Try adjusting your filters or search query to find more results."
+              actionText="Reset Filters"
+              onAction={() => {
+                setSearchQuery("")
+                setSelectedCategory("All")
+                setMinFollowers(0)
+                setMinEngagement(0)
+                setVerifiedOnly(false)
+              }}
+            />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {filteredInfluencers.map((inf, i) => (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  key={inf.id}
+                >
+                  <Card className="h-full flex flex-col hover:border-primary/40 hover:shadow-md transition-all">
+                    <CardHeader className="pb-4">
+                      <div className="flex justify-between items-start gap-4">
+                        <div className="flex items-center gap-3">
+                          <img src={inf.avatar} alt={inf.name} className="w-12 h-12 rounded-full border bg-muted" />
+                          <div>
+                            <h3 className="font-semibold flex items-center gap-1">
+                              {inf.name}
+                              {inf.verified && <FiCheckCircle className="h-4 w-4 text-blue-500" />}
+                            </h3>
+                            <p className="text-xs text-muted-foreground flex items-center gap-1">
+                              <FiMapPin className="h-3 w-3" /> {inf.location || "Global"}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-4">
+                      <Badge variant="secondary" className="mb-3">{inf.category}</Badge>
+                      <div className="grid grid-cols-2 gap-2 mt-2">
+                        <div className="bg-muted/50 p-2 rounded-lg text-center">
+                          <p className="text-xs text-muted-foreground mb-0.5">Followers</p>
+                          <p className="font-semibold">{formatNumber(getTotalFollowers(inf))}</p>
+                        </div>
+                        <div className="bg-muted/50 p-2 rounded-lg text-center">
+                          <p className="text-xs text-muted-foreground mb-0.5">Engagement</p>
+                          <p className="font-semibold">{inf.engagementRate}%</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 flex items-center justify-between px-1">
+                        <span className="text-xs font-medium text-muted-foreground">Trust Score</span>
+                        <Badge variant="outline" className={inf.trustScore >= 90 ? "text-green-600 border-green-200 bg-green-50" : "text-yellow-600 border-yellow-200 bg-yellow-50"}>
+                          {inf.trustScore}/100
+                        </Badge>
+                      </div>
+                    </CardContent>
+                    <CardFooter>
+                      <Button
+                        className="w-full"
+                        variant="default"
+                        onClick={() => setSelectedInfluencer(inf)}
+                      >
+                        View Profile
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

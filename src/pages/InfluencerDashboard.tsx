@@ -1,10 +1,12 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { StatCard } from "@/components/common/StatCard"
 import { EmptyState } from "@/components/common/EmptyState"
+import { Skeleton } from "@/components/common/Skeleton"
 import { FiCheckCircle, FiCircle, FiActivity, FiDollarSign, FiTrendingUp, FiChevronRight, FiStar, FiCalendar, FiBriefcase } from "react-icons/fi"
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { motion } from "framer-motion"
@@ -41,6 +43,14 @@ export function InfluencerDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
   const { campaigns } = useCampaigns()
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Use the first 2 campaigns as "Active/Pending" invites
   const activeCampaigns = campaigns.slice(1, 3)
@@ -77,9 +87,6 @@ export function InfluencerDashboard() {
             Track your growth, manage collaborations, and discover new opportunities.
           </p>
         </div>
-        <Button className="shrink-0" asChild>
-          <Link to="/campaigns">Find Brands</Link>
-        </Button>
       </div>
 
       {/* Analytics Cards Row */}
@@ -120,19 +127,23 @@ export function InfluencerDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="h-[250px] w-full mt-2">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={earningsData} margin={{ top: 5, right: 0, bottom: 5, left: -20 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
-                      <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
-                        itemStyle={{ color: 'hsl(var(--primary))', fontWeight: 'bold' }}
-                        formatter={(value: number | string | readonly (number | string)[] | undefined) => [`$${Number(value || 0)}`, "Earnings"]}
-                      />
-                      <Bar dataKey="earnings" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} maxBarSize={40} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                  {isLoading ? (
+                    <Skeleton className="h-full w-full" />
+                  ) : (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={earningsData} margin={{ top: 5, right: 0, bottom: 5, left: -20 }}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
+                        <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                          itemStyle={{ color: 'hsl(var(--primary))', fontWeight: 'bold' }}
+                          formatter={(value: number | string | readonly (number | string)[] | undefined) => [`$${Number(value || 0)}`, "Earnings"]}
+                        />
+                        <Bar dataKey="earnings" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -145,19 +156,23 @@ export function InfluencerDashboard() {
               </CardHeader>
               <CardContent>
                 <div className="h-[250px] w-full mt-2">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={analyticsData} margin={{ top: 5, right: 20, bottom: 5, left: -20 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
-                      <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis yAxisId="left" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis yAxisId="right" orientation="right" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
-                      />
-                      <Line yAxisId="left" type="monotone" dataKey="followers" name="Followers (k)" stroke="hsl(var(--primary))" strokeWidth={3} dot={false} />
-                      <Line yAxisId="right" type="monotone" dataKey="engagement" name="Engagement (%)" stroke="#10b981" strokeWidth={3} dot={false} />
-                    </LineChart>
-                  </ResponsiveContainer>
+                  {isLoading ? (
+                    <Skeleton className="h-full w-full" />
+                  ) : (
+                    <ResponsiveContainer width="100%" height="100%">
+                      <LineChart data={analyticsData} margin={{ top: 5, right: 20, bottom: 5, left: -20 }}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
+                        <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis yAxisId="left" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis yAxisId="right" orientation="right" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                        <Tooltip 
+                          contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                        />
+                        <Line yAxisId="left" type="monotone" dataKey="followers" name="Followers (k)" stroke="hsl(var(--primary))" strokeWidth={3} dot={false} />
+                        <Line yAxisId="right" type="monotone" dataKey="engagement" name="Engagement (%)" stroke="#10b981" strokeWidth={3} dot={false} />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -170,18 +185,25 @@ export function InfluencerDashboard() {
                 <CardTitle>Your Campaigns</CardTitle>
                 <CardDescription>Active collaborations and pending invites.</CardDescription>
               </div>
-              <Button variant="outline" size="sm" asChild>
-                <Link to="/campaigns">Manage All</Link>
-              </Button>
             </CardHeader>
             <CardContent>
-              {activeCampaigns.length === 0 ? (
+              {isLoading ? (
+                <div className="space-y-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
+                      <Skeleton className="h-10 w-10 rounded-full" />
+                      <div className="space-y-2 flex-1">
+                        <Skeleton className="h-4 w-1/3" />
+                        <Skeleton className="h-3 w-1/4" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : activeCampaigns.length === 0 ? (
                 <EmptyState
                   icon={<FiBriefcase className="h-8 w-8" />}
                   title="No active campaigns"
                   description="You don't have any ongoing collaborations right now."
-                  actionText="Find Brands"
-                  onAction={() => navigate("/discovery")}
                   className="min-h-[200px]"
                 />
               ) : (
@@ -232,21 +254,40 @@ export function InfluencerDashboard() {
               <CardDescription>Complete your profile to get more brand deals.</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="mb-4">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="font-medium">Completion</span>
-                  <span className="font-bold text-primary">{completionPercentage}%</span>
+              {isLoading ? (
+                <div className="space-y-4">
+                  <div className="flex justify-between">
+                    <Skeleton className="h-4 w-1/4" />
+                    <Skeleton className="h-4 w-1/4" />
+                  </div>
+                  <Skeleton className="h-2 w-full rounded-full" />
+                  <div className="space-y-3 mt-6">
+                    {[1, 2, 3].map(i => (
+                      <div key={i} className="flex items-center gap-3">
+                        <Skeleton className="h-5 w-5 rounded-full shrink-0" />
+                        <Skeleton className="h-4 w-3/4" />
+                      </div>
+                    ))}
+                  </div>
+                  <Skeleton className="h-10 w-full mt-6" />
                 </div>
-                {/* Custom Progress Bar */}
-                <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: `${completionPercentage}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="h-full bg-primary"
-                  />
-                </div>
-              </div>
+              ) : (
+                <>
+                  <div className="mb-4">
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="font-medium">Completion</span>
+                      <span className="font-bold text-primary">{completionPercentage}%</span>
+                    </div>
+                    {/* Custom Progress Bar */}
+                    <div className="h-2 w-full bg-secondary rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: `${completionPercentage}%` }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="h-full bg-primary"
+                      />
+                    </div>
+                  </div>
               
               <div className="space-y-3 mt-6">
                 {checklist.map((item) => (
@@ -265,6 +306,8 @@ export function InfluencerDashboard() {
               <Button className="w-full mt-6" variant={completionPercentage === 100 ? "outline" : "default"}>
                 {completionPercentage === 100 ? "Edit Profile" : "Complete Profile"}
               </Button>
+                </>
+              )}
             </CardContent>
           </Card>
 

@@ -67,7 +67,7 @@ export function Chat() {
   }
 
   return (
-    <div className="flex h-full -m-4 md:-m-6 border-t md:border-t-0 md:rounded-lg overflow-hidden bg-background">
+    <div className="flex h-full border rounded-lg overflow-hidden bg-background">
       
       {/* LEFT PANE: Conversation List */}
       <div 

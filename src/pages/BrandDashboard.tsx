@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { Input } from "@/components/ui/input"
@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { StatCard } from "@/components/common/StatCard"
 import { EmptyState } from "@/components/common/EmptyState"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Skeleton } from "@/components/common/Skeleton"
 import { FiPlus, FiActivity, FiUsers, FiHeart, FiDollarSign, FiChevronRight, FiBell, FiMessageSquare, FiAlertCircle, FiX, FiCheckCircle } from "react-icons/fi"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { motion } from "framer-motion"
@@ -34,6 +35,14 @@ export function BrandDashboard() {
   const navigate = useNavigate()
   const { campaigns, addCampaign } = useCampaigns()
   const { notifications } = useNotifications()
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Modal State
   const [isCreateOpen, setIsCreateOpen] = useState(false)
@@ -183,8 +192,15 @@ export function BrandDashboard() {
               <CardDescription>Reach and engagement across all campaigns over the last 6 months</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-[300px] w-full mt-4">
-                <ResponsiveContainer width="100%" height="100%">
+              {isLoading ? (
+                <div className="h-[300px] w-full mt-4 flex items-end gap-2">
+                  {[40, 70, 45, 90, 65, 80].map((h, i) => (
+                    <Skeleton key={i} className="flex-1 rounded-t-sm" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              ) : (
+                <div className="h-[300px] w-full mt-4">
+                  <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={performanceData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
                     <XAxis 
@@ -236,6 +252,7 @@ export function BrandDashboard() {
                   </LineChart>
                 </ResponsiveContainer>
               </div>
+              )}
             </CardContent>
           </Card>
 
@@ -246,12 +263,21 @@ export function BrandDashboard() {
                 <CardTitle>Recent Campaigns</CardTitle>
                 <CardDescription>Monitor your ongoing and past campaign statuses.</CardDescription>
               </div>
-              <Button variant="outline" size="sm" asChild>
-                <Link to="/campaigns">View All</Link>
-              </Button>
             </CardHeader>
             <CardContent>
-              {campaigns.length === 0 ? (
+              {isLoading ? (
+                <div className="space-y-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="flex items-center gap-4 p-4 border rounded-lg">
+                      <Skeleton className="h-10 w-10 rounded-full" />
+                      <div className="space-y-2 flex-1">
+                        <Skeleton className="h-4 w-1/3" />
+                        <Skeleton className="h-3 w-1/4" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : campaigns.length === 0 ? (
                 <EmptyState
                   icon={<FiActivity className="h-8 w-8" />}
                   title="No campaigns yet"
@@ -306,7 +332,19 @@ export function BrandDashboard() {
               </Link>
             </CardHeader>
             <CardContent>
-              {recentNotifications.length === 0 ? (
+              {isLoading ? (
+                <div className="space-y-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="flex gap-4 items-start">
+                      <Skeleton className="h-8 w-8 rounded-full" />
+                      <div className="space-y-2 flex-1">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-3 w-1/2" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : recentNotifications.length === 0 ? (
                 <EmptyState
                   icon={<FiBell className="h-8 w-8" />}
                   title="No new notifications"
@@ -348,7 +386,25 @@ export function BrandDashboard() {
               <CardDescription>AI-curated creators for your brand</CardDescription>
             </CardHeader>
             <CardContent>
-              {recommendedInfluencers.length === 0 ? (
+              {isLoading ? (
+                <div className="grid grid-cols-1 gap-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="flex flex-col p-4 rounded-xl border bg-card gap-4">
+                      <div className="flex items-center gap-4">
+                        <Skeleton className="h-12 w-12 rounded-full" />
+                        <div className="space-y-2 flex-1">
+                          <Skeleton className="h-4 w-1/2" />
+                          <Skeleton className="h-3 w-1/3" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2 border-t pt-3">
+                        <Skeleton className="h-8 w-16" />
+                        <Skeleton className="h-8 w-16" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : recommendedInfluencers.length === 0 ? (
                 <EmptyState
                   icon={<FiUsers className="h-8 w-8" />}
                   title="No matches found"

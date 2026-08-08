@@ -1,10 +1,13 @@
+import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
 import { FiArrowLeft, FiCheckCircle, FiClock, FiFileText, FiMessageSquare, FiActivity, FiCheck, FiX, FiAlertCircle, FiImage } from "react-icons/fi"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { EmptyState } from "@/components/common/EmptyState"
+import { Skeleton } from "@/components/common/Skeleton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 import { useAuth } from "@/contexts/AuthContext"
@@ -18,8 +21,16 @@ export function Campaign() {
   const navigate = useNavigate()
   const { currentUser } = useAuth()
   const { campaigns } = useCampaigns()
+  const [isLoading, setIsLoading] = useState(true)
   
   const campaign = campaigns.find(c => c.id === id)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 800)
+    return () => clearTimeout(timer)
+  }, [])
 
   if (!campaign) {
     return (
@@ -45,37 +56,60 @@ export function Campaign() {
         <FiArrowLeft className="mr-2 h-4 w-4" /> Back
       </Button>
 
-      {/* 1. Header */}
       <div className="bg-card border rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div className="flex items-center gap-4">
-          <Avatar className="h-16 w-16 border-2 border-primary/20">
-            <AvatarImage src={campaign.brand.logo} alt={campaign.brand.name} />
-            <AvatarFallback>{campaign.brand.name.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <div>
-            <div className="flex items-center gap-3 mb-1">
-              <h1 className="text-2xl font-bold">{campaign.title}</h1>
-              <Badge variant={campaign.status === "Active" ? "default" : "secondary"}>
-                {campaign.status}
-              </Badge>
+        {isLoading ? (
+          <>
+            <div className="flex items-center gap-4">
+              <Skeleton className="h-16 w-16 rounded-full" />
+              <div className="space-y-2">
+                <Skeleton className="h-6 w-48" />
+                <Skeleton className="h-4 w-32" />
+              </div>
             </div>
-            <p className="text-muted-foreground font-medium">{campaign.brand.name}</p>
-          </div>
-        </div>
-        
-        <div className="flex gap-8">
-          <div>
-            <p className="text-sm text-muted-foreground mb-1">Budget</p>
-            <p className="font-semibold text-lg">${campaign.budget.toLocaleString()}</p>
-          </div>
-          <div>
-            <p className="text-sm text-muted-foreground mb-1">Timeline</p>
-            <p className="font-medium text-sm">
-              {new Date(campaign.timeline.startDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - 
-              {new Date(campaign.timeline.endDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-            </p>
-          </div>
-        </div>
+            <div className="flex gap-8">
+              <div className="space-y-1">
+                <Skeleton className="h-4 w-12" />
+                <Skeleton className="h-6 w-24" />
+              </div>
+              <div className="space-y-1">
+                <Skeleton className="h-4 w-16" />
+                <Skeleton className="h-6 w-32" />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="flex items-center gap-4">
+              <Avatar className="h-16 w-16 border-2 border-primary/20">
+                <AvatarImage src={campaign.brand.logo} alt={campaign.brand.name} />
+                <AvatarFallback>{campaign.brand.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="flex items-center gap-3 mb-1">
+                  <h1 className="text-2xl font-bold">{campaign.title}</h1>
+                  <Badge variant={campaign.status === "Active" ? "default" : "secondary"}>
+                    {campaign.status}
+                  </Badge>
+                </div>
+                <p className="text-muted-foreground font-medium">{campaign.brand.name}</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-8">
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Budget</p>
+                <p className="font-semibold text-lg">${campaign.budget.toLocaleString()}</p>
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground mb-1">Timeline</p>
+                <p className="font-medium text-sm">
+                  {new Date(campaign.timeline.startDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - 
+                  {new Date(campaign.timeline.endDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                </p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* 3. Timeline (Stepper) */}
@@ -131,10 +165,23 @@ export function Campaign() {
               <CardDescription>Review and approve draft content for the campaign.</CardDescription>
             </CardHeader>
             <CardContent>
-              {campaign.submittedContent && campaign.submittedContent.length > 0 ? (
+              {isLoading ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[1, 2].map(i => (
+                    <div key={i} className="border rounded-xl overflow-hidden">
+                      <Skeleton className="aspect-video w-full rounded-none" />
+                    </div>
+                  ))}
+                </div>
+              ) : campaign.submittedContent && campaign.submittedContent.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {campaign.submittedContent.map(content => (
-                    <div key={content.id} className="border rounded-xl overflow-hidden group">
+                    <motion.div 
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      key={content.id} 
+                      className="border rounded-xl overflow-hidden group cursor-pointer"
+                    >
                       <div className="aspect-video relative bg-muted">
                         <img src={content.thumbnailUrl} alt="Content thumbnail" className="w-full h-full object-cover" />
                         <div className="absolute top-2 right-2">
@@ -154,7 +201,7 @@ export function Campaign() {
                           </Button>
                         </div>
                       )}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               ) : (
