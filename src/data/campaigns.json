@@ -11,7 +11,24 @@
       "activeCampaigns": 3
     },
     "status": "Active",
-    "deliverables": ["1 Dedicated YouTube Video", "2 Instagram Stories", "1 TikTok Video"],
+    "currentPhase": "Review",
+    "deliverables": [
+      {
+        "id": "del-1",
+        "description": "1 Dedicated YouTube Video",
+        "completed": true
+      },
+      {
+        "id": "del-2",
+        "description": "2 Instagram Stories",
+        "completed": false
+      },
+      {
+        "id": "del-3",
+        "description": "1 TikTok Video",
+        "completed": false
+      }
+    ],
     "timeline": {
       "startDate": "2024-03-01T00:00:00Z",
       "endDate": "2024-04-15T00:00:00Z"
@@ -24,7 +41,48 @@
         "avatar": "https://i.pravatar.cc/150?u=sarah"
       }
     ],
-    "contentApprovalStatus": "Approved"
+    "contentApprovalStatus": "Pending",
+    "submittedContent": [
+      {
+        "id": "cnt-1",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=300&h=200&fit=crop",
+        "submittedAt": "2024-03-20T14:30:00Z",
+        "status": "pending"
+      }
+    ],
+    "comments": [
+      {
+        "id": "msg-1",
+        "authorName": "Lumina Tech Team",
+        "authorRole": "brand",
+        "message": "Hey Sarah, the draft looks great! Just one minor tweak: could you make sure the logo is visible in the opening shot?",
+        "timestamp": "2024-03-21T09:15:00Z"
+      },
+      {
+        "id": "msg-2",
+        "authorName": "Sarah Jenkins",
+        "authorRole": "influencer",
+        "message": "Absolutely! I'll re-export that section and have it uploaded by this afternoon.",
+        "timestamp": "2024-03-21T10:05:00Z"
+      }
+    ],
+    "activityLog": [
+      {
+        "id": "act-1",
+        "action": "Campaign brief accepted by Sarah Jenkins",
+        "timestamp": "2024-03-05T11:00:00Z"
+      },
+      {
+        "id": "act-2",
+        "action": "Content submitted for review",
+        "timestamp": "2024-03-20T14:30:00Z"
+      },
+      {
+        "id": "act-3",
+        "action": "Status changed to In Review",
+        "timestamp": "2024-03-20T14:35:00Z"
+      }
+    ]
   },
   {
     "id": "camp-2",
@@ -38,7 +96,19 @@
       "activeCampaigns": 8
     },
     "status": "In Review",
-    "deliverables": ["3 TikTok Videos", "1 Instagram Reel"],
+    "currentPhase": "Approved",
+    "deliverables": [
+      {
+        "id": "del-4",
+        "description": "3 TikTok Videos",
+        "completed": true
+      },
+      {
+        "id": "del-5",
+        "description": "1 Instagram Reel",
+        "completed": true
+      }
+    ],
     "timeline": {
       "startDate": "2024-05-01T00:00:00Z",
       "endDate": "2024-06-30T00:00:00Z"
@@ -51,7 +121,47 @@
         "avatar": "https://i.pravatar.cc/150?u=marcus"
       }
     ],
-    "contentApprovalStatus": "Pending"
+    "contentApprovalStatus": "Approved",
+    "submittedContent": [
+      {
+        "id": "cnt-2",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=300&h=200&fit=crop",
+        "submittedAt": "2024-05-15T16:45:00Z",
+        "status": "approved"
+      },
+      {
+        "id": "cnt-3",
+        "thumbnailUrl": "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=300&h=200&fit=crop",
+        "submittedAt": "2024-05-18T11:20:00Z",
+        "status": "approved"
+      }
+    ],
+    "comments": [
+      {
+        "id": "msg-3",
+        "authorName": "FitCore Team",
+        "authorRole": "brand",
+        "message": "Perfect! This is exactly the energy we were looking for.",
+        "timestamp": "2024-05-19T14:30:00Z"
+      }
+    ],
+    "activityLog": [
+      {
+        "id": "act-4",
+        "action": "Content submitted for review",
+        "timestamp": "2024-05-15T16:45:00Z"
+      },
+      {
+        "id": "act-5",
+        "action": "Content approved by FitCore Apparel",
+        "timestamp": "2024-05-19T14:30:00Z"
+      },
+      {
+        "id": "act-6",
+        "action": "Status changed to Approved",
+        "timestamp": "2024-05-19T14:30:00Z"
+      }
+    ]
   },
   {
     "id": "camp-3",

@@ -17,6 +17,12 @@ export function ScrollToTop() {
     } else {
       // If no hash, scroll to the absolute top
       window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+      
+      // Also handle layout-specific scroll containers
+      const mainContainer = document.getElementById("main-scroll-container")
+      if (mainContainer) {
+        mainContainer.scrollTo({ top: 0, left: 0, behavior: "instant" })
+      }
     }
   }, [pathname, hash])
 

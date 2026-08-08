@@ -53,12 +53,42 @@ export interface Brand {
 
 export type CampaignStatus = "Draft" | "Active" | "In Review" | "Completed";
 
+export type CampaignPhase = "Brief Sent" | "Content Creation" | "Review" | "Approved" | "Live" | "Completed";
+
+export interface CampaignDeliverable {
+  id: string;
+  description: string;
+  completed: boolean;
+}
+
+export interface CampaignContent {
+  id: string;
+  thumbnailUrl: string;
+  submittedAt: string;
+  status: "pending" | "approved" | "changes_requested";
+}
+
+export interface CampaignComment {
+  id: string;
+  authorName: string;
+  authorRole: "brand" | "influencer";
+  message: string;
+  timestamp: string;
+}
+
+export interface CampaignActivity {
+  id: string;
+  action: string;
+  timestamp: string;
+}
+
 export interface Campaign {
   id: string;
   title: string;
   brand: Brand;
   status: CampaignStatus;
-  deliverables: string[];
+  currentPhase?: CampaignPhase;
+  deliverables: (string | CampaignDeliverable)[];
   timeline: {
     startDate: string;
     endDate: string;
@@ -66,6 +96,9 @@ export interface Campaign {
   budget: number;
   assignedInfluencers: Pick<Influencer, "id" | "name" | "avatar">[];
   contentApprovalStatus: "Pending" | "Approved" | "Rejected";
+  submittedContent?: CampaignContent[];
+  comments?: CampaignComment[];
+  activityLog?: CampaignActivity[];
 }
 
 export interface Testimonial {

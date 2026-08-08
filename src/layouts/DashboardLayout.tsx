@@ -180,7 +180,7 @@ export function DashboardLayout() {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-secondary/20 relative">
+        <main id="main-scroll-container" className="flex-1 overflow-y-auto p-4 md:p-6 bg-secondary/20 relative">
           <Outlet />
         </main>
       </div>

@@ -9,7 +9,7 @@ import { FiCheckCircle, FiCircle, FiActivity, FiDollarSign, FiTrendingUp, FiChev
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import { motion } from "framer-motion"
 
-import campaignsData from "@/data/campaigns.json"
+import { useCampaigns } from "@/contexts/CampaignsContext"
 
 // Mock Chart Data
 const earningsData = [
@@ -40,12 +40,13 @@ const checklist = [
 export function InfluencerDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
+  const { campaigns } = useCampaigns()
 
   // Use the first 2 campaigns as "Active/Pending" invites
-  const activeCampaigns = campaignsData.slice(1, 3)
+  const activeCampaigns = campaigns.slice(1, 3)
   
   // Use the next 3 campaigns as "AI Recommendations"
-  const recommendedCampaigns = campaignsData.slice(3, 6)
+  const recommendedCampaigns = campaigns.slice(3, 6)
 
   const completionPercentage = Math.round((checklist.filter(c => c.completed).length / checklist.length) * 100)
 
