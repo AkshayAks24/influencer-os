@@ -1,0 +1,91 @@
+[
+  {
+    "id": "conv-1",
+    "participant": {
+      "id": "inf-2",
+      "name": "Marcus Chen",
+      "avatar": "https://i.pravatar.cc/150?u=marcus"
+    },
+    "unreadCount": 1,
+    "messages": [
+      {
+        "id": "msg-1",
+        "senderId": "current-user",
+        "message": "Hey Marcus! Thanks for sending over the drafts.",
+        "timestamp": "2024-05-12T10:00:00Z",
+        "isOwnMessage": true
+      },
+      {
+        "id": "msg-2",
+        "senderId": "inf-2",
+        "message": "No problem! Let me know if you need any edits on the second video.",
+        "timestamp": "2024-05-12T10:05:00Z",
+        "isOwnMessage": false
+      },
+      {
+        "id": "msg-3",
+        "senderId": "inf-2",
+        "message": "I can also provide raw footage if required.",
+        "timestamp": "2024-05-12T10:06:00Z",
+        "isOwnMessage": false
+      }
+    ]
+  },
+  {
+    "id": "conv-2",
+    "participant": {
+      "id": "brand-1",
+      "name": "Sarah Jenkins",
+      "avatar": "https://i.pravatar.cc/150?u=sarah"
+    },
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg-4",
+        "senderId": "brand-1",
+        "message": "Hi, we are launching Lumina Pro X next month and would love to collaborate.",
+        "timestamp": "2024-03-05T09:30:00Z",
+        "isOwnMessage": false
+      },
+      {
+        "id": "msg-5",
+        "senderId": "current-user",
+        "message": "Hey Sarah! That sounds exciting. Could you send over the campaign brief?",
+        "timestamp": "2024-03-05T10:15:00Z",
+        "isOwnMessage": true
+      },
+      {
+        "id": "msg-6",
+        "senderId": "brand-1",
+        "message": "Sure thing. I'll email it to you by tomorrow.",
+        "timestamp": "2024-03-05T10:45:00Z",
+        "isOwnMessage": false
+      }
+    ]
+  },
+  {
+    "id": "conv-3",
+    "participant": {
+      "id": "inf-4",
+      "name": "Elena Rodriguez",
+      "avatar": "https://i.pravatar.cc/150?u=elena"
+    },
+    "unreadCount": 2,
+    "messages": [
+      {
+        "id": "msg-7",
+        "senderId": "inf-4",
+        "message": "Hi! Do we have an update on the payment for the last campaign?",
+        "timestamp": "2024-08-01T14:20:00Z",
+        "isOwnMessage": false
+      },
+      {
+        "id": "msg-8",
+        "senderId": "inf-4",
+        "message": "Just want to make sure it processed okay.",
+        "timestamp": "2024-08-01T14:21:00Z",
+        "isOwnMessage": false
+      }
+    ]
+  }
+]

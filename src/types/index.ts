@@ -191,3 +191,16 @@ export interface AppNotification {
   read: boolean;
 }
 
+export interface ChatParticipant {
+  id: string;
+  name: string;
+  avatar: string;
+}
+
+
+export interface Conversation {
+  id: string;
+  participant: ChatParticipant;
+  unreadCount: number;
+  messages: ChatMessage[];
+}
