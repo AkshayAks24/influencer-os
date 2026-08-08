@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/contexts/AuthContext"
+import { useNotifications } from "@/contexts/NotificationsContext"
 
 export function DashboardLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -12,6 +13,7 @@ export function DashboardLayout() {
   const location = useLocation()
   const navigate = useNavigate()
   const { currentUser, logout } = useAuth()
+  const { unreadCount } = useNotifications()
   
   const profileRef = useRef<HTMLDivElement>(null)
 
@@ -138,7 +140,9 @@ export function DashboardLayout() {
           <div className="flex items-center gap-4">
             <Link to="/notifications" className="text-muted-foreground hover:text-foreground relative">
               <FiBell className="h-5 w-5" />
-              <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+              {unreadCount > 0 && (
+                <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+              )}
             </Link>
             
             <div className="relative" ref={profileRef}>

@@ -14,8 +14,9 @@ import { InfluencerDashboard } from "@/pages/InfluencerDashboard"
 import { Discovery } from "@/pages/Discovery"
 
 import { InfluencerProfile } from "@/pages/InfluencerProfile"
-
 import { Campaign } from "@/pages/Campaign"
+import { Notifications } from "@/pages/Notifications"
+import { Settings } from "@/pages/Settings"
 
 // Placeholder component for unimplemented pages
 const Placeholder = ({ name }: { name: string }) => (
@@ -58,8 +59,8 @@ export function AppRoutes() {
           <Route path="/campaigns" element={<Placeholder name="Campaigns & Brands" />} />
           <Route path="/profile/:id" element={<InfluencerProfile />} />
           <Route path="/campaign/:id" element={<Campaign />} />
-          <Route path="/settings" element={<Placeholder name="Settings" />} />
-          <Route path="/notifications" element={<Placeholder name="Notifications" />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/chat" element={<Placeholder name="Chat" />} />
         </Route>
       </Route>

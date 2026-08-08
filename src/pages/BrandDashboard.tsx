@@ -15,8 +15,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { motion } from "framer-motion"
 
 import { useCampaigns } from "@/contexts/CampaignsContext"
+import { useNotifications } from "@/contexts/NotificationsContext"
 import influencersData from "@/data/influencers.json"
-import notificationsData from "@/data/notifications.json"
 import type { Campaign } from "@/types"
 
 // Mock Chart Data
@@ -33,6 +33,7 @@ export function BrandDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
   const { campaigns, addCampaign } = useCampaigns()
+  const { notifications } = useNotifications()
 
   // Modal State
   const [isCreateOpen, setIsCreateOpen] = useState(false)
@@ -93,7 +94,7 @@ export function BrandDashboard() {
   // Use 4 influencers for recommended
   const recommendedInfluencers = influencersData.slice(0, 4)
   // Use 4 recent notifications
-  const recentNotifications = notificationsData.slice(0, 4)
+  const recentNotifications = notifications.slice(0, 4)
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {

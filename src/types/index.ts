@@ -182,3 +182,12 @@ export interface LandingData {
   features: LandingFeature[];
   faq: LandingFAQ[];
 }
+
+export interface AppNotification {
+  id: string;
+  type: "message" | "campaign" | "alert" | "system";
+  message: string;
+  timestamp: string;
+  read: boolean;
+}
+
