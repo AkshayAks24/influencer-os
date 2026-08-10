@@ -175,7 +175,7 @@ export function InfluencerProfile() {
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <div key={i} className="aspect-square bg-muted rounded-xl flex items-center justify-center border hover:border-primary/50 transition-colors cursor-pointer group relative overflow-hidden">
                     <FiImage className="h-8 w-8 text-muted-foreground/50 group-hover:scale-110 transition-transform" />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-medium">
+                    <div className="absolute inset-0 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-foreground font-medium">
                       View Post
                     </div>
                   </div>
@@ -193,7 +193,7 @@ export function InfluencerProfile() {
               <div className="space-y-4">
                 {influencer.pastCollaborations && influencer.pastCollaborations.length > 0 ? (
                   influencer.pastCollaborations.map((collab, i) => (
-                    <div key={i} className="flex items-center justify-between p-4 rounded-xl border bg-card hover:bg-muted/30 transition-colors">
+                    <div key={i} className="flex items-center justify-between p-4 rounded-xl border bg-card hover:bg-primary/10 transition-colors">
                       <div>
                         <h4 className="font-semibold text-lg">{collab.brandName}</h4>
                         <p className="text-sm text-muted-foreground">{collab.campaignName}</p>
@@ -232,7 +232,7 @@ export function InfluencerProfile() {
               {Object.entries(influencer.platforms).map(([platform, data]) => {
                 if (!data) return null;
                 return (
-                  <div key={platform} className="flex items-center justify-between p-3 border rounded-xl hover:bg-muted/50 transition-colors">
+                  <div key={platform} className="flex items-center justify-between p-3 border rounded-xl hover:bg-primary/10 transition-colors">
                     <div className="flex items-center gap-3">
                       {platform === 'instagram' ? <div className="p-2 bg-pink-100 rounded-lg"><FiInstagram className="h-5 w-5 text-pink-600" /></div> :
                         platform === 'youtube' ? <div className="p-2 bg-red-100 rounded-lg"><FiYoutube className="h-5 w-5 text-red-600" /></div> :

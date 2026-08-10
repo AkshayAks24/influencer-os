@@ -24,7 +24,7 @@ export function Notifications() {
       case "system":
         return <FiAlertCircle className="h-4 w-4 text-orange-500" />
       default:
-        return <FiBell className="h-4 w-4 text-gray-500" />
+        return <FiBell className="h-4 w-4 text-muted-foreground" />
     }
   }
 

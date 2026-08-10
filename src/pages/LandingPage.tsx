@@ -18,16 +18,28 @@ const landingData = landingDataRaw as LandingData
 const pricingData = pricingDataRaw as PricingPlan[]
 const testimonialsData = testimonialsDataRaw as Testimonial[]
 
+import { MeshBackground } from "@/components/common/MeshBackground"
+
 export function LandingPage() {
   return (
     <>
       <Hero data={landingData.hero} />
-      <ProductOverview data={landingData.productOverview} />
-      <ProblemsSolutions data={landingData.problemsSolutions} />
-      <FeatureHighlights data={landingData.features} />
-      <Testimonials data={testimonialsData} />
-      <PricingPreview data={pricingData} />
-      <FAQ data={landingData.faq} />
+      
+      {/* Sections Below Hero */}
+      <div className="relative overflow-hidden bg-background">
+        {/* Animated Mesh Background */}
+        <MeshBackground />
+        
+        {/* Content Layer */}
+        <div className="relative z-10">
+          <ProductOverview data={landingData.productOverview} />
+          <ProblemsSolutions data={landingData.problemsSolutions} />
+          <FeatureHighlights data={landingData.features} />
+          <Testimonials data={testimonialsData} />
+          <PricingPreview data={pricingData} />
+          <FAQ data={landingData.faq} />
+        </div>
+      </div>
     </>
   )
 }

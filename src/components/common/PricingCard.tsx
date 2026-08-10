@@ -23,12 +23,16 @@ export function PricingCard({ plan, isAnnual = false, index = 0 }: PricingCardPr
       className="flex h-full w-full"
     >
       <Card 
-        className={`relative flex flex-col w-full h-full transition-all duration-300 hover:-translate-y-1 ${
+        className={`relative flex flex-col w-full h-full bg-card overflow-hidden transition-all duration-300 hover:-translate-y-2 ${
           plan.highlighted 
-            ? "border-primary shadow-xl hover:shadow-2xl hover:shadow-primary/20 scale-105 z-10" 
-            : "border-border shadow-sm hover:shadow-lg hover:border-primary/50"
+            ? "border border-primary shadow-[0_20px_40px_-15px_rgba(214,168,90,0.3),inset_0_1px_1px_rgba(255,255,255,0.1)] scale-105 z-10" 
+            : "border-none shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.05)] hover:border-primary/50"
         }`}
       >
+        {/* Glow effect for Pro tier */}
+        {plan.highlighted && (
+          <div className="absolute inset-0 rounded-xl border border-primary/50 shadow-[inset_0_0_20px_rgba(214,168,90,0.2)] animate-pulse pointer-events-none" />
+        )}
         {plan.highlighted && (
           <div className="absolute -top-4 left-0 right-0 flex justify-center">
             <Badge className="bg-primary text-primary-foreground font-bold px-4 py-1.5 uppercase tracking-wider text-xs shadow-md">

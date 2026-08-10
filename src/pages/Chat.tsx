@@ -96,8 +96,8 @@ export function Chat() {
                 key={conv.id}
                 onClick={() => setActiveId(conv.id)}
                 className={cn(
-                  "w-full text-left p-4 flex items-center gap-4 transition-colors hover:bg-muted/50 border-b last:border-b-0",
-                  activeId === conv.id ? "bg-muted" : "bg-transparent"
+                  "w-full text-left p-4 flex items-center gap-4 transition-colors hover:bg-primary/10 border-b last:border-b-0 border-l-2 border-l-transparent",
+                  activeId === conv.id ? "bg-primary/10 border-l-primary" : "bg-transparent"
                 )}
               >
                 <Avatar className="h-12 w-12 border shrink-0">
@@ -134,7 +134,7 @@ export function Chat() {
       {/* RIGHT PANE: Active Thread */}
       <div 
         className={cn(
-          "flex-col flex-1 bg-muted/20 relative",
+          "flex-col flex-1 bg-background relative",
           !activeId ? "hidden md:flex items-center justify-center" : "flex"
         )}
       >
@@ -228,7 +228,7 @@ export function Chat() {
                   placeholder="Type a message..." 
                   value={inputText}
                   onChange={e => setInputText(e.target.value)}
-                  className="flex-1 rounded-full bg-muted/50 border-transparent focus-visible:ring-1"
+                  className="flex-1 rounded-full bg-secondary border-transparent focus-visible:ring-1"
                 />
                 <Button 
                   type="submit" 

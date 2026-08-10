@@ -30,8 +30,10 @@ export function Testimonials({ data }: { data: Testimonial[] }) {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="snap-center shrink-0 w-[85vw] sm:w-[400px]"
             >
-              <Card className="h-full border-none shadow-sm hover:shadow-md transition-shadow bg-background">
-                <CardContent className="p-8 flex flex-col justify-between h-full">
+              <Card className="relative h-full bg-card border-none shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                {/* Subtle gold accent line */}
+                <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+                <CardContent className="p-8 flex flex-col justify-between h-full relative z-10">
                   <blockquote className="text-lg italic leading-relaxed text-muted-foreground mb-8">
                     "{testimonial.quote}"
                   </blockquote>

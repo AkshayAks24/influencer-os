@@ -26,25 +26,24 @@ export function StatCard({
   return (
     <div
       className={cn(
-        "rounded-2xl border bg-card text-card-foreground shadow-sm overflow-hidden",
-        "p-6 transition-all hover:shadow-md",
+        "p-6 rounded-2xl bg-card border border-border flex flex-col justify-between transition-all",
         className
       )}
     >
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-muted-foreground tracking-tight">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
           {label}
         </h3>
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <div className="p-2 bg-secondary rounded-lg text-foreground">
           {icon}
         </div>
       </div>
       
-      <div className="mt-4">
+      <div className="space-y-1">
         {loading ? (
-          <div className="h-8 w-24 animate-pulse rounded-md bg-muted" />
+          <div className="h-9 w-24 animate-pulse rounded-md bg-muted" />
         ) : (
-          <div className="text-3xl font-bold tracking-tight">{value}</div>
+          <h2 className="text-3xl font-semibold text-foreground tracking-tight">{value}</h2>
         )}
         
         {trend && !loading && (

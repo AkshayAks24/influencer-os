@@ -205,7 +205,7 @@ export function Discovery() {
                 exit={{ height: 0, opacity: 0 }}
                 className="lg:hidden overflow-hidden"
               >
-                <Card className="p-4 bg-muted/30 border-dashed">
+                <Card className="p-4 bg-card border-dashed">
                   <FilterSidebar />
                 </Card>
               </motion.div>
@@ -265,7 +265,7 @@ export function Discovery() {
                     <CardHeader className="pb-4">
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex items-center gap-3">
-                          <img src={inf.avatar} alt={inf.name} className="w-12 h-12 rounded-full border bg-muted" />
+                          <img src={inf.avatar} alt={inf.name} className="w-12 h-12 rounded-full border bg-background" />
                           <div>
                             <h3 className="font-semibold flex items-center gap-1">
                               {inf.name}
@@ -281,11 +281,11 @@ export function Discovery() {
                     <CardContent className="flex-1 pb-4">
                       <Badge variant="secondary" className="mb-3">{inf.category}</Badge>
                       <div className="grid grid-cols-2 gap-2 mt-2">
-                        <div className="bg-muted/50 p-2 rounded-lg text-center">
+                        <div className="bg-background p-2 rounded-lg text-center shadow-inner">
                           <p className="text-xs text-muted-foreground mb-0.5">Followers</p>
                           <p className="font-semibold">{formatNumber(getTotalFollowers(inf))}</p>
                         </div>
-                        <div className="bg-muted/50 p-2 rounded-lg text-center">
+                        <div className="bg-background p-2 rounded-lg text-center shadow-inner">
                           <p className="text-xs text-muted-foreground mb-0.5">Engagement</p>
                           <p className="font-semibold">{inf.engagementRate}%</p>
                         </div>
@@ -371,7 +371,7 @@ export function Discovery() {
                     {Object.entries(selectedInfluencer.platforms).map(([platform, data]) => {
                       if (!data) return null;
                       return (
-                      <div key={platform} className="flex items-center justify-between p-3 border rounded-lg bg-muted/20">
+                      <div key={platform} className="flex items-center justify-between p-3 border rounded-lg bg-background">
                         <div className="flex items-center gap-3">
                           {platform === 'instagram' ? <FiInstagram className="h-5 w-5 text-pink-500" /> :
                             platform === 'youtube' ? <FiYoutube className="h-5 w-5 text-red-500" /> :
@@ -388,7 +388,7 @@ export function Discovery() {
                 </div>
               </div>
 
-              <div className="p-6 border-t mt-auto bg-muted/10 sticky bottom-0">
+              <div className="p-6 border-t mt-auto bg-background sticky bottom-0">
                 <Button className="w-full h-12 text-base font-semibold" asChild>
                   <Link to={`/profile/${selectedInfluencer.id}`}>
                     View Full Profile

@@ -129,7 +129,7 @@ export function BrandDashboard() {
       case "alert":
         return <FiAlertCircle className="h-4 w-4 text-red-500" />
       default:
-        return <FiBell className="h-4 w-4 text-gray-500" />
+        return <FiBell className="h-4 w-4 text-muted-foreground" />
     }
   }
 
@@ -202,17 +202,17 @@ export function BrandDashboard() {
                 <div className="h-[300px] w-full mt-4">
                   <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={performanceData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.08)" />
                     <XAxis 
                       dataKey="month" 
-                      stroke="hsl(var(--muted-foreground))"
+                      stroke="#8C93A3"
                       fontSize={12}
                       tickLine={false}
                       axisLine={false}
                     />
                     <YAxis 
                       yAxisId="left"
-                      stroke="hsl(var(--muted-foreground))"
+                      stroke="#8C93A3"
                       fontSize={12}
                       tickLine={false}
                       axisLine={false}
@@ -221,15 +221,15 @@ export function BrandDashboard() {
                     <YAxis 
                       yAxisId="right"
                       orientation="right"
-                      stroke="hsl(var(--muted-foreground))"
+                      stroke="#8C93A3"
                       fontSize={12}
                       tickLine={false}
                       axisLine={false}
                       tickFormatter={(value) => `${(value / 1000).toFixed(0)}k`}
                     />
                     <Tooltip 
-                      contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
-                      labelStyle={{ color: 'hsl(var(--foreground))', fontWeight: 'bold' }}
+                      contentStyle={{ backgroundColor: '#141B2B', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '8px' }}
+                      labelStyle={{ color: '#F3EFE6', fontWeight: 'bold' }}
                     />
                     <Legend />
                     <Line 
@@ -237,7 +237,7 @@ export function BrandDashboard() {
                       type="monotone" 
                       name="Reach"
                       dataKey="reach" 
-                      stroke="hsl(var(--primary))" 
+                      stroke="#D6A85A" 
                       strokeWidth={3}
                       activeDot={{ r: 8 }} 
                     />
@@ -295,7 +295,7 @@ export function BrandDashboard() {
                       transition={{ delay: i * 0.1 }}
                       key={campaign.id}
                       onClick={() => navigate(`/campaign/${campaign.id}`)}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg border bg-card hover:bg-muted/50 transition-colors cursor-pointer gap-4"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg border bg-card hover:bg-primary/10 transition-colors cursor-pointer gap-4"
                     >
                       <div className="flex items-center gap-4">
                         <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">

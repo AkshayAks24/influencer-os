@@ -132,15 +132,15 @@ export function InfluencerDashboard() {
                   ) : (
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={earningsData} margin={{ top: 5, right: 0, bottom: 5, left: -20 }}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
-                        <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.08)" />
+                        <XAxis dataKey="month" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
-                          itemStyle={{ color: 'hsl(var(--primary))', fontWeight: 'bold' }}
+                          contentStyle={{ backgroundColor: '#141B2B', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '8px' }}
+                          itemStyle={{ color: '#D6A85A', fontWeight: 'bold' }}
                           formatter={(value: number | string | readonly (number | string)[] | undefined) => [`$${Number(value || 0)}`, "Earnings"]}
                         />
-                        <Bar dataKey="earnings" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                        <Bar dataKey="earnings" fill="#D6A85A" radius={[4, 4, 0, 0]} maxBarSize={40} />
                       </BarChart>
                     </ResponsiveContainer>
                   )}
@@ -161,14 +161,14 @@ export function InfluencerDashboard() {
                   ) : (
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={analyticsData} margin={{ top: 5, right: 20, bottom: 5, left: -20 }}>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
-                        <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis yAxisId="left" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis yAxisId="right" orientation="right" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.08)" />
+                        <XAxis dataKey="month" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis yAxisId="left" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis yAxisId="right" orientation="right" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
                         <Tooltip 
-                          contentStyle={{ backgroundColor: 'hsl(var(--card))', borderColor: 'hsl(var(--border))', borderRadius: '8px' }}
+                          contentStyle={{ backgroundColor: '#141B2B', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '8px' }}
                         />
-                        <Line yAxisId="left" type="monotone" dataKey="followers" name="Followers (k)" stroke="hsl(var(--primary))" strokeWidth={3} dot={false} />
+                        <Line yAxisId="left" type="monotone" dataKey="followers" name="Followers (k)" stroke="#D6A85A" strokeWidth={3} dot={false} />
                         <Line yAxisId="right" type="monotone" dataKey="engagement" name="Engagement (%)" stroke="#10b981" strokeWidth={3} dot={false} />
                       </LineChart>
                     </ResponsiveContainer>
@@ -215,7 +215,7 @@ export function InfluencerDashboard() {
                       transition={{ delay: i * 0.1 }}
                       key={campaign.id}
                       onClick={() => navigate(`/campaign/${campaign.id}`)}
-                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg border bg-card hover:bg-muted/50 transition-colors cursor-pointer gap-4"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-lg border bg-card hover:bg-primary/10 transition-colors cursor-pointer gap-4"
                     >
                       <div className="flex items-center gap-4">
                         {campaign.brand?.logo ? (

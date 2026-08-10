@@ -17,55 +17,76 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
+        serif: ["Fraunces", "serif"],
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "#4F46E5", // Indigo-600
-          foreground: "#ffffff",
-          hover: "#4338CA", // Indigo-700
-        },
-        secondary: {
-          DEFAULT: "#F3F4F6", // Gray-100
-          foreground: "#111827", // Gray-900
-          hover: "#E5E7EB", // Gray-200
-        },
-        destructive: {
-          DEFAULT: "#EF4444", // Red-500
-          foreground: "#ffffff",
-        },
-        success: {
-          DEFAULT: "#10B981", // Emerald-500
-          foreground: "#ffffff",
-        },
-        warning: {
-          DEFAULT: "#F59E0B", // Amber-500
-          foreground: "#ffffff",
-        },
-        info: {
-          DEFAULT: "#3B82F6", // Blue-500
-          foreground: "#ffffff",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+        background: "#0D1420",
+        foreground: "#F3EFE6",
+        card: {
+          DEFAULT: "#141B2B",
+          foreground: "#F3EFE6",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "#141B2B",
+          foreground: "#F3EFE6",
         },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        primary: {
+          DEFAULT: "#D6A85A",
+          foreground: "#0D1420",
+          hover: "#B98A3E",
         },
+        secondary: {
+          DEFAULT: "#19202B",
+          foreground: "#F3EFE6",
+          hover: "#1F2937",
+        },
+        muted: {
+          DEFAULT: "#141B2B",
+          foreground: "#8C93A3",
+        },
+        accent: {
+          DEFAULT: "#212225",
+          foreground: "#D6A85A",
+        },
+        border: "rgba(255, 255, 255, 0.08)",
+        input: "rgba(255, 255, 255, 0.1)",
+        ring: "#D6A85A",
+        
+        navy: {
+          base: "#0D1420",
+          elevated: "#141B2B",
+        },
+        gold: {
+          DEFAULT: "#D6A85A",
+          dark: "#B98A3E",
+          light: "#F0CD8E",
+        },
+        slate: {
+          muted: "#8C93A3"
+        },
+        destructive: {
+          DEFAULT: "#D9534F",
+          foreground: "#F3EFE6",
+        },
+        success: {
+          DEFAULT: "#5CB85C",
+          foreground: "#F3EFE6",
+        },
+        warning: {
+          DEFAULT: "#F0AD4E",
+          foreground: "#F3EFE6",
+        },
+        info: {
+          DEFAULT: "#5BC0DE",
+          foreground: "#F3EFE6",
+        },
+      },
+      backgroundImage: {
+        'gold-gradient': 'linear-gradient(to right, #D6A85A, #F0CD8E)',
+      },
+      boxShadow: {
+        'gold-glow': '0 0 20px rgba(214, 168, 90, 0.15)',
+        'elevated': '0 4px 20px rgba(0, 0, 0, 0.4)',
       },
       borderRadius: {
         lg: "var(--radius)",

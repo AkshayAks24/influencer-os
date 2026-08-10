@@ -4,7 +4,7 @@ import type { PricingPlan } from "@/types"
 
 export function PricingPreview({ data }: { data: PricingPlan[] }) {
   return (
-    <section id="pricing" className="py-24 bg-background">
+    <section id="pricing" className="py-24">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mb-16 text-center max-w-[800px] mx-auto">
           <motion.h2 
