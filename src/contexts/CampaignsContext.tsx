@@ -1,23 +1,37 @@
-import { createContext, useContext, useState, type ReactNode } from "react"
-import type { Campaign } from "@/types"
-import campaignsData from "@/data/campaigns.json"
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import apiClient from "@/lib/apiClient"
 
 interface CampaignsContextType {
-  campaigns: Campaign[]
-  addCampaign: (campaign: Campaign) => void
+  campaigns: any[]
+  isLoading: boolean
+  fetchCampaigns: () => Promise<void>
 }
 
 const CampaignsContext = createContext<CampaignsContextType | undefined>(undefined)
 
 export function CampaignsProvider({ children }: { children: ReactNode }) {
-  const [campaigns, setCampaigns] = useState<Campaign[]>(campaignsData as unknown as Campaign[])
+  const [campaigns, setCampaigns] = useState<any[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  const addCampaign = (campaign: Campaign) => {
-    setCampaigns(prev => [campaign, ...prev])
+  const fetchCampaigns = async () => {
+    setIsLoading(true)
+    try {
+      const response = await apiClient.get('/campaigns', { params: { limit: 100 } })
+      setCampaigns(response.data.items || [])
+    } catch (error) {
+      console.error("Failed to fetch campaigns", error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
+  // Load campaigns initially
+  useEffect(() => {
+    fetchCampaigns()
+  }, [])
+
   return (
-    <CampaignsContext.Provider value={{ campaigns, addCampaign }}>
+    <CampaignsContext.Provider value={{ campaigns, isLoading, fetchCampaigns }}>
       {children}
     </CampaignsContext.Provider>
   )

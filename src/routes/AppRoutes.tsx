@@ -13,6 +13,7 @@ import { InfluencerDashboard } from "@/pages/InfluencerDashboard"
 
 import { Discovery } from "@/pages/Discovery"
 
+import { Campaigns } from "@/pages/Campaigns"
 import { InfluencerProfile } from "@/pages/InfluencerProfile"
 import { Campaign } from "@/pages/Campaign"
 import { Notifications } from "@/pages/Notifications"
@@ -57,7 +58,7 @@ export function AppRoutes() {
           </Route>
 
           {/* Shared Authenticated Routes */}
-          <Route path="/campaigns" element={<Placeholder name="Campaigns & Brands" />} />
+          <Route path="/campaigns" element={<Campaigns />} />
           <Route path="/profile/:id" element={<InfluencerProfile />} />
           <Route path="/campaign/:id" element={<Campaign />} />
           <Route path="/settings" element={<Settings />} />

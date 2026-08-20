@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import { FiGithub, FiInstagram, FiMail, FiAlertCircle } from "react-icons/fi"
+import { FiFacebook, FiInstagram, FiMail, FiAlertCircle } from "react-icons/fi"
 
 import { useAuth } from "@/contexts/AuthContext"
 import { Button } from "@/components/ui/button"
@@ -37,9 +37,7 @@ export function Login() {
     setIsLoading(true)
     setApiError("")
     try {
-      // For mock login, we just parse role from email loosely, defaulting to brand
-      const role = data.email.includes("influencer") ? "influencer" : "brand"
-      const user = await login(data.email, data.password, role)
+      const user = await login(data.email, data.password, data.remember)
       
       const destination = location.state?.from?.pathname || (user.role === "brand" ? "/brand/dashboard" : "/influencer/dashboard")
       navigate(destination, { replace: true })
@@ -68,8 +66,8 @@ export function Login() {
         <CardContent>
           <div className="grid grid-cols-2 gap-4 mb-6">
             <Button variant="outline" className="h-11">
-              <FiGithub className="mr-2 h-4 w-4" />
-              Github
+              <FiFacebook className="mr-2 h-4 w-4" />
+              Facebook
             </Button>
             <Button variant="outline" className="h-11">
               <FiInstagram className="mr-2 h-4 w-4" />

@@ -21,7 +21,7 @@ interface RegisterFormData {
 }
 
 export function Register() {
-  const { login } = useAuth()
+  const { register: registerUser } = useAuth()
   const navigate = useNavigate()
   
   const [isLoading, setIsLoading] = useState(false)
@@ -41,7 +41,7 @@ export function Register() {
     setIsLoading(true)
     setApiError("")
     try {
-      const user = await login(data.email, data.password, selectedRole, data.name)
+      const user = await registerUser(data.email, data.password, selectedRole, data.name)
       
       if (user.role === "brand") {
         navigate("/brand/dashboard", { replace: true })

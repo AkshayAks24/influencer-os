@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+
+import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -12,6 +12,8 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, R
 import { motion } from "framer-motion"
 
 import { useCampaigns } from "@/contexts/CampaignsContext"
+import apiClient from "@/lib/apiClient"
+import { useState, useEffect } from "react"
 
 // Mock Chart Data
 const earningsData = [
@@ -42,15 +44,25 @@ const checklist = [
 export function InfluencerDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
-  const { campaigns } = useCampaigns()
-  const [isLoading, setIsLoading] = useState(true)
+  const { campaigns, isLoading: isCampaignsLoading } = useCampaigns()
+  const [dashboardStats, setDashboardStats] = useState<any>(null)
+  const [isStatsLoading, setIsStatsLoading] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 800)
-    return () => clearTimeout(timer)
+    const fetchDashboard = async () => {
+      try {
+        const response = await apiClient.get('/dashboard/influencer')
+        setDashboardStats(response.data)
+      } catch (error) {
+        console.error("Failed to fetch dashboard data", error)
+      } finally {
+        setIsStatsLoading(false)
+      }
+    }
+    fetchDashboard()
   }, [])
+
+  const isLoading = isCampaignsLoading || isStatsLoading
 
   // Use the first 2 campaigns as "Active/Pending" invites
   const activeCampaigns = campaigns.slice(1, 3)
@@ -93,19 +105,19 @@ export function InfluencerDashboard() {
       <div className="grid gap-4 md:grid-cols-3">
         <StatCard
           label="Total Earnings"
-          value="$15,500"
+          value={isStatsLoading ? "-" : `$${(dashboardStats?.total_earnings || 0).toLocaleString()}`}
           icon={<FiDollarSign className="h-5 w-5" />}
           trend={{ value: 12, label: "from last month", direction: "up" }}
         />
         <StatCard
           label="This Month"
-          value="$4,200"
+          value={isStatsLoading ? "-" : `$${(dashboardStats?.this_month_earnings || 0).toLocaleString()}`}
           icon={<FiTrendingUp className="h-5 w-5" />}
           trend={{ value: 8, label: "from last month", direction: "up" }}
         />
         <StatCard
           label="Pending Payout"
-          value="$1,850"
+          value={isStatsLoading ? "-" : `$${(dashboardStats?.pending_payout || 0).toLocaleString()}`}
           icon={<FiCalendar className="h-5 w-5" />}
         />
       </div>
@@ -180,11 +192,14 @@ export function InfluencerDashboard() {
 
           {/* Active Campaigns */}
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Your Campaigns</CardTitle>
                 <CardDescription>Active collaborations and pending invites.</CardDescription>
               </div>
+              <Link to="/campaigns" className="text-sm text-primary hover:underline font-medium">
+                View All
+              </Link>
             </CardHeader>
             <CardContent>
               {isLoading ? (
@@ -363,7 +378,7 @@ export function InfluencerDashboard() {
                         
                         <div className="mt-4 flex items-center justify-between text-sm border-t pt-3">
                           <span className="font-semibold">${(campaign.budget / 1000).toFixed(0)}k</span>
-                          <span className="text-muted-foreground">{campaign.deliverables.length} Deliverables</span>
+                          <span className="text-muted-foreground">{campaign.deliverables?.length || 0} Deliverables</span>
                         </div>
                       </motion.div>
                     )

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom"
-import { FiMenu, FiX, FiHome, FiSearch, FiSettings, FiBell, FiMessageSquare, FiLogOut, FiChevronDown, FiUser } from "react-icons/fi"
+import { FiMenu, FiX, FiHome, FiSearch, FiSettings, FiBell, FiMessageSquare, FiLogOut, FiChevronDown, FiUser, FiFolder } from "react-icons/fi"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
@@ -42,6 +42,12 @@ export function DashboardLayout() {
       showFor: ["brand"]
     },
     {
+      name: "Campaigns",
+      path: "/campaigns",
+      icon: <FiFolder className="h-5 w-5" />,
+      showFor: ["brand", "influencer"]
+    },
+    {
       name: "Chat",
       path: "/chat",
       icon: <FiMessageSquare className="h-5 w-5" />,
@@ -81,7 +87,11 @@ export function DashboardLayout() {
         )}
       >
         <div className="h-16 flex items-center justify-between px-6 border-b shrink-0">
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center space-x-2">
+          <Link 
+            to={currentUser?.role === "brand" ? "/brand/dashboard" : "/influencer/dashboard"} 
+            onClick={() => setIsMobileMenuOpen(false)} 
+            className="flex items-center space-x-2"
+          >
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
               <span className="font-bold text-primary-foreground text-xl leading-none">I</span>
             </div>
@@ -96,7 +106,7 @@ export function DashboardLayout() {
             <FiX className="h-5 w-5" />
           </Button>
         </div>
-        <div className="p-4 flex-1 overflow-y-auto space-y-1">
+        <div data-lenis-prevent="true" className="p-4 flex-1 overflow-y-auto space-y-1">
           {visibleNavItems.map((item) => {
             const isActive = location.pathname.startsWith(item.path)
             return (
@@ -201,7 +211,7 @@ export function DashboardLayout() {
         </header>
 
         {/* Page Content */}
-        <main id="main-scroll-container" className="flex-1 overflow-y-auto p-4 md:p-6 bg-background relative">
+        <main id="main-scroll-container" data-lenis-prevent="true" className="flex-1 overflow-y-auto p-4 md:p-6 bg-background relative">
           <Outlet />
         </main>
       </div>

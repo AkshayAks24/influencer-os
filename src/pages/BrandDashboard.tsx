@@ -17,8 +17,8 @@ import { motion } from "framer-motion"
 
 import { useCampaigns } from "@/contexts/CampaignsContext"
 import { useNotifications } from "@/contexts/NotificationsContext"
-import influencersData from "@/data/influencers.json"
-import type { Campaign } from "@/types"
+import { CreateCampaignModal } from "@/components/campaigns/CreateCampaignModal"
+import apiClient from "@/lib/apiClient"
 
 // Mock Chart Data
 const performanceData = [
@@ -33,75 +33,33 @@ const performanceData = [
 export function BrandDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
-  const { campaigns, addCampaign } = useCampaigns()
+  const { campaigns, isLoading, fetchCampaigns } = useCampaigns()
   const { notifications } = useNotifications()
-  const [isLoading, setIsLoading] = useState(true)
+
+  const [dashboardStats, setDashboardStats] = useState<any>(null)
+  const [isStatsLoading, setIsStatsLoading] = useState(true)
+  const [recommendedInfluencers, setRecommendedInfluencers] = useState<any[]>([])
+  const [isInfluencersLoading, setIsInfluencersLoading] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 800)
-    return () => clearTimeout(timer)
+    const fetchDashboard = async () => {
+      try {
+        const response = await apiClient.get('/dashboard/brand')
+        setDashboardStats(response.data)
+        setRecommendedInfluencers(response.data.recommended_influencers || [])
+      } catch (error) {
+        console.error("Failed to fetch dashboard data", error)
+      } finally {
+        setIsStatsLoading(false)
+        setIsInfluencersLoading(false)
+      }
+    }
+    fetchDashboard()
   }, [])
 
   // Modal State
   const [isCreateOpen, setIsCreateOpen] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
 
-  const [formData, setFormData] = useState({
-    title: "",
-    budget: "",
-    startDate: "",
-    endDate: "",
-    deliverables: [""]
-  })
-
-  const handleAddDeliverable = () => setFormData(prev => ({ ...prev, deliverables: [...prev.deliverables, ""] }))
-  
-  const handleRemoveDeliverable = (index: number) => setFormData(prev => ({ ...prev, deliverables: prev.deliverables.filter((_, i) => i !== index) }))
-  
-  const handleDeliverableChange = (index: number, value: string) => {
-    const newDeliverables = [...formData.deliverables]
-    newDeliverables[index] = value
-    setFormData(prev => ({ ...prev, deliverables: newDeliverables }))
-  }
-
-  const handleCreateSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setShowSuccess(true)
-      const newCampaign: Campaign = {
-        id: `camp-new-${Date.now()}`,
-        title: formData.title,
-        brand: {
-          id: currentUser?.id || "b-1",
-          name: currentUser?.name || "Brand",
-          logo: currentUser?.avatar || "",
-          industry: "Various",
-          campaignsPosted: 1,
-          activeCampaigns: 1
-        },
-        status: "Draft",
-        currentPhase: "Brief Sent",
-        deliverables: formData.deliverables.filter(d => d.trim() !== ""),
-        timeline: { startDate: formData.startDate, endDate: formData.endDate },
-        budget: parseInt(formData.budget) || 0,
-        assignedInfluencers: [],
-        contentApprovalStatus: "Pending"
-      }
-      addCampaign(newCampaign)
-      setTimeout(() => {
-        setShowSuccess(false)
-        setIsCreateOpen(false)
-        setFormData({ title: "", budget: "", startDate: "", endDate: "", deliverables: [""] })
-      }, 1500)
-    }, 800)
-  }
-  // Use 4 influencers for recommended
-  const recommendedInfluencers = influencersData.slice(0, 4)
   // Use 4 recent notifications
   const recentNotifications = notifications.slice(0, 4)
 
@@ -156,25 +114,25 @@ export function BrandDashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard
           label="Active Campaigns"
-          value="12"
+          value={isStatsLoading ? "-" : (dashboardStats?.active_campaigns || "0")}
           icon={<FiActivity className="h-5 w-5" />}
           trend={{ value: 8, label: "from last month", direction: "up" }}
         />
         <StatCard
-          label="Total Reach"
-          value="2.4M"
-          icon={<FiUsers className="h-5 w-5" />}
+          label="Completed Campaigns"
+          value={isStatsLoading ? "-" : (dashboardStats?.completed_campaigns || "0")}
+          icon={<FiCheckCircle className="h-5 w-5" />}
           trend={{ value: 12.5, label: "from last month", direction: "up" }}
         />
         <StatCard
-          label="Avg Engagement"
-          value="4.8%"
-          icon={<FiHeart className="h-5 w-5" />}
+          label="Influencers Engaged"
+          value={isStatsLoading ? "-" : (dashboardStats?.total_influencers_worked_with || "0")}
+          icon={<FiUsers className="h-5 w-5" />}
           trend={{ value: 0.4, label: "from last month", direction: "up" }}
         />
         <StatCard
           label="Budget Spent"
-          value="$45,200"
+          value={isStatsLoading ? "-" : `$${(dashboardStats?.total_spending || 0).toLocaleString()}`}
           icon={<FiDollarSign className="h-5 w-5" />}
           trend={{ value: 2, label: "from last month", direction: "down" }}
         />
@@ -258,11 +216,14 @@ export function BrandDashboard() {
 
           {/* 3. Recent Campaigns */}
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
               <div>
                 <CardTitle>Recent Campaigns</CardTitle>
                 <CardDescription>Monitor your ongoing and past campaign statuses.</CardDescription>
               </div>
+              <Link to="/campaigns" className="text-sm text-primary hover:underline font-medium">
+                View All
+              </Link>
             </CardHeader>
             <CardContent>
               {isLoading ? (
@@ -303,7 +264,7 @@ export function BrandDashboard() {
                         </div>
                         <div>
                           <h4 className="font-semibold">{campaign.title}</h4>
-                          <p className="text-sm text-muted-foreground">{campaign.deliverables.length} Deliverables • ${(campaign.budget / 1000).toFixed(0)}k Budget</p>
+                          <p className="text-sm text-muted-foreground">{campaign.deliverables?.length || 0} Deliverables • ${(campaign.budget / 1000).toFixed(0)}k Budget</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4 self-start sm:self-auto">
@@ -386,7 +347,7 @@ export function BrandDashboard() {
               <CardDescription>AI-curated creators for your brand</CardDescription>
             </CardHeader>
             <CardContent>
-              {isLoading ? (
+              {isInfluencersLoading ? (
                 <div className="grid grid-cols-1 gap-4">
                   {[1, 2, 3].map(i => (
                     <div key={i} className="flex flex-col p-4 rounded-xl border bg-card gap-4">
@@ -432,23 +393,23 @@ export function BrandDashboard() {
                         
                         <div className="flex items-center gap-4">
                           <Avatar className="h-12 w-12 border-2 border-background shadow-sm">
-                            <AvatarImage src={influencer.avatar} alt={influencer.name} />
-                            <AvatarFallback>{influencer.name.charAt(0)}</AvatarFallback>
+                            <AvatarImage src={influencer.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${influencer.username}`} alt={influencer.username} />
+                            <AvatarFallback>{influencer.username?.charAt(0)}</AvatarFallback>
                           </Avatar>
                           <div>
-                            <h4 className="font-semibold group-hover:text-primary transition-colors">{influencer.name}</h4>
-                            <p className="text-sm text-muted-foreground">{influencer.category} • {influencer.location.split(',')[0]}</p>
+                            <h4 className="font-semibold group-hover:text-primary transition-colors">{influencer.username}</h4>
+                            <p className="text-sm text-muted-foreground">{influencer.category} • {influencer.location?.split(',')[0] || "Global"}</p>
                           </div>
                         </div>
                         
                         <div className="mt-4 grid grid-cols-2 gap-2 text-sm border-t pt-3">
                           <div>
                             <span className="text-muted-foreground block text-xs mb-0.5">Followers</span>
-                            <span className="font-semibold">{(Math.max(...Object.values(influencer.platforms).map(p => p.followers)) / 1000000).toFixed(1)}M</span>
+                            <span className="font-semibold">{(influencer.follower_count / 1000000).toFixed(1)}M</span>
                           </div>
                           <div>
                             <span className="text-muted-foreground block text-xs mb-0.5">Engagement</span>
-                            <span className="font-semibold">{influencer.engagementRate}%</span>
+                            <span className="font-semibold">{influencer.engagement_rate}%</span>
                           </div>
                         </div>
                       </motion.div>
@@ -465,85 +426,7 @@ export function BrandDashboard() {
         </div>
       </div>
 
-      {/* Create Campaign Modal */}
-      <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-        <DialogContent className="max-w-xl">
-          <DialogHeader>
-            <DialogTitle>Create New Campaign</DialogTitle>
-            <DialogDescription>Draft a new campaign and start matching with creators.</DialogDescription>
-          </DialogHeader>
-          
-          {showSuccess ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
-                <FiCheckCircle className="h-6 w-6 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Campaign Created!</h3>
-              <p className="text-muted-foreground">Your campaign has been successfully drafted.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleCreateSubmit} className="space-y-6 mt-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2 sm:col-span-2">
-                  <Label htmlFor="title">Campaign Title</Label>
-                  <Input id="title" required value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} placeholder="e.g. Summer Shred Challenge" />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="brand">Brand</Label>
-                  <Input id="brand" disabled value={currentUser?.name || "Brand"} />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="budget">Budget ($)</Label>
-                  <Input id="budget" type="number" required min="1" value={formData.budget} onChange={e => setFormData({...formData, budget: e.target.value})} placeholder="5000" />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="startDate">Start Date</Label>
-                  <Input id="startDate" type="date" required value={formData.startDate} onChange={e => setFormData({...formData, startDate: e.target.value})} />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="endDate">End Date</Label>
-                  <Input id="endDate" type="date" required value={formData.endDate} onChange={e => setFormData({...formData, endDate: e.target.value})} />
-                </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <Label>Deliverables</Label>
-                  <Button type="button" variant="outline" size="sm" onClick={handleAddDeliverable}>
-                    <FiPlus className="mr-1 h-3 w-3" /> Add Row
-                  </Button>
-                </div>
-                {formData.deliverables.map((del, index) => (
-                  <div key={index} className="flex gap-2 items-center">
-                    <Input 
-                      value={del} 
-                      onChange={(e) => handleDeliverableChange(index, e.target.value)} 
-                      placeholder="e.g. 1 Dedicated YouTube Video" 
-                      required
-                    />
-                    {formData.deliverables.length > 1 && (
-                      <Button type="button" variant="ghost" size="icon" onClick={() => handleRemoveDeliverable(index)} className="text-destructive shrink-0">
-                        <FiX className="h-4 w-4" />
-                      </Button>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <DialogFooter>
-                <Button type="button" variant="outline" onClick={() => setIsCreateOpen(false)} disabled={isSubmitting}>
-                  Cancel
-                </Button>
-                <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? "Creating..." : "Create Campaign"}
-                </Button>
-              </DialogFooter>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
+      <CreateCampaignModal isOpen={isCreateOpen} onClose={setIsCreateOpen} />
     </div>
   )
 }
