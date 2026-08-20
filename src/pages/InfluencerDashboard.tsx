@@ -15,24 +15,6 @@ import { useCampaigns } from "@/contexts/CampaignsContext"
 import apiClient from "@/lib/apiClient"
 import { useState, useEffect } from "react"
 
-// Mock Chart Data
-const earningsData = [
-  { month: "Jan", earnings: 1200 },
-  { month: "Feb", earnings: 2100 },
-  { month: "Mar", earnings: 1800 },
-  { month: "Apr", earnings: 3400 },
-  { month: "May", earnings: 2800 },
-  { month: "Jun", earnings: 4200 },
-]
-
-const analyticsData = [
-  { month: "Jan", followers: 450, engagement: 4.2 },
-  { month: "Feb", followers: 462, engagement: 4.5 },
-  { month: "Mar", followers: 485, engagement: 4.8 },
-  { month: "Apr", followers: 512, engagement: 5.1 },
-  { month: "May", followers: 535, engagement: 5.4 },
-  { month: "Jun", followers: 580, engagement: 5.8 },
-]
 
 const checklist = [
   { id: 1, label: "Add profile picture", completed: true },
@@ -64,11 +46,9 @@ export function InfluencerDashboard() {
 
   const isLoading = isCampaignsLoading || isStatsLoading
 
-  // Use the first 2 campaigns as "Active/Pending" invites
-  const activeCampaigns = campaigns.slice(1, 3)
-  
-  // Use the next 3 campaigns as "AI Recommendations"
-  const recommendedCampaigns = campaigns.slice(3, 6)
+  // Use campaigns from dashboard stats
+  const activeCampaigns = dashboardStats?.active_campaigns || []
+  const recommendedCampaigns = dashboardStats?.recommended_campaigns || []
 
   const completionPercentage = Math.round((checklist.filter(c => c.completed).length / checklist.length) * 100)
 
@@ -143,7 +123,7 @@ export function InfluencerDashboard() {
                     <Skeleton className="h-full w-full" />
                   ) : (
                     <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={earningsData} margin={{ top: 5, right: 0, bottom: 5, left: -20 }}>
+                      <BarChart data={dashboardStats?.earnings_by_month || []} margin={{ top: 5, right: 0, bottom: 5, left: -20 }}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.08)" />
                         <XAxis dataKey="month" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
                         <YAxis stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
@@ -152,7 +132,7 @@ export function InfluencerDashboard() {
                           itemStyle={{ color: '#D6A85A', fontWeight: 'bold' }}
                           formatter={(value: number | string | readonly (number | string)[] | undefined) => [`$${Number(value || 0)}`, "Earnings"]}
                         />
-                        <Bar dataKey="earnings" fill="#D6A85A" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                        <Bar dataKey="value" fill="#D6A85A" radius={[4, 4, 0, 0]} maxBarSize={40} />
                       </BarChart>
                     </ResponsiveContainer>
                   )}
@@ -172,16 +152,14 @@ export function InfluencerDashboard() {
                     <Skeleton className="h-full w-full" />
                   ) : (
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={analyticsData} margin={{ top: 5, right: 20, bottom: 5, left: -20 }}>
+                      <LineChart data={dashboardStats?.follower_growth || []} margin={{ top: 5, right: 20, bottom: 5, left: -20 }}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.08)" />
                         <XAxis dataKey="month" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis yAxisId="left" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis yAxisId="right" orientation="right" stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
+                        <YAxis stroke="#8C93A3" fontSize={12} tickLine={false} axisLine={false} />
                         <Tooltip 
                           contentStyle={{ backgroundColor: '#141B2B', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '8px' }}
                         />
-                        <Line yAxisId="left" type="monotone" dataKey="followers" name="Followers (k)" stroke="#D6A85A" strokeWidth={3} dot={false} />
-                        <Line yAxisId="right" type="monotone" dataKey="engagement" name="Engagement (%)" stroke="#10b981" strokeWidth={3} dot={false} />
+                        <Line type="monotone" dataKey="value" name="Followers (k)" stroke="#D6A85A" strokeWidth={3} dot={false} />
                       </LineChart>
                     </ResponsiveContainer>
                   )}

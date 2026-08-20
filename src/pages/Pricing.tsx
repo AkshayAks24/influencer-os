@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 
@@ -6,19 +6,34 @@ import { FAQ } from "@/components/common/FAQ"
 import { PricingCard } from "@/components/common/PricingCard"
 import { Badge } from "@/components/ui/badge"
 import { EmptyState } from "@/components/common/EmptyState"
+import apiClient from "@/lib/apiClient"
 
-import pricingDataRaw from "@/data/pricing.json"
 import landingDataRaw from "@/data/landing.json"
 import type { PricingPlan, LandingData } from "@/types"
 
-const pricingData = pricingDataRaw as PricingPlan[]
 const landingData = landingDataRaw as LandingData
 
 export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false)
+  const [pricingData, setPricingData] = useState<PricingPlan[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchPricing = async () => {
+      try {
+        const response = await apiClient.get('/pricing-plans')
+        setPricingData(response.data || [])
+      } catch (error) {
+        console.error("Failed to fetch pricing plans", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchPricing()
+  }, [])
 
   // Empty state guard for robust future API integration
-  if (!pricingData || pricingData.length === 0) {
+  if (!isLoading && (!pricingData || pricingData.length === 0)) {
     return (
       <div className="container mx-auto py-24 px-4">
         <EmptyState

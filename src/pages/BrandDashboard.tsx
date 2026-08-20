@@ -20,15 +20,6 @@ import { useNotifications } from "@/contexts/NotificationsContext"
 import { CreateCampaignModal } from "@/components/campaigns/CreateCampaignModal"
 import apiClient from "@/lib/apiClient"
 
-// Mock Chart Data
-const performanceData = [
-  { month: "Jan", reach: 1200000, engagement: 85000 },
-  { month: "Feb", reach: 1350000, engagement: 92000 },
-  { month: "Mar", reach: 1250000, engagement: 88000 },
-  { month: "Apr", reach: 1800000, engagement: 145000 },
-  { month: "May", reach: 2100000, engagement: 175000 },
-  { month: "Jun", reach: 2400000, engagement: 195000 },
-]
 
 export function BrandDashboard() {
   const { currentUser } = useAuth()
@@ -159,7 +150,7 @@ export function BrandDashboard() {
               ) : (
                 <div className="h-[300px] w-full mt-4">
                   <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={performanceData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                  <LineChart data={dashboardStats?.reach_over_time || []} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255, 255, 255, 0.08)" />
                     <XAxis 
                       dataKey="month" 
@@ -169,16 +160,6 @@ export function BrandDashboard() {
                       axisLine={false}
                     />
                     <YAxis 
-                      yAxisId="left"
-                      stroke="#8C93A3"
-                      fontSize={12}
-                      tickLine={false}
-                      axisLine={false}
-                      tickFormatter={(value) => `${(value / 1000000).toFixed(1)}M`}
-                    />
-                    <YAxis 
-                      yAxisId="right"
-                      orientation="right"
                       stroke="#8C93A3"
                       fontSize={12}
                       tickLine={false}
@@ -191,21 +172,12 @@ export function BrandDashboard() {
                     />
                     <Legend />
                     <Line 
-                      yAxisId="left"
                       type="monotone" 
                       name="Reach"
-                      dataKey="reach" 
+                      dataKey="value" 
                       stroke="#D6A85A" 
                       strokeWidth={3}
                       activeDot={{ r: 8 }} 
-                    />
-                    <Line 
-                      yAxisId="right"
-                      type="monotone" 
-                      name="Engagement"
-                      dataKey="engagement" 
-                      stroke="#10b981" 
-                      strokeWidth={3} 
                     />
                   </LineChart>
                 </ResponsiveContainer>

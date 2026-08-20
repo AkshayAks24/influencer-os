@@ -39,6 +39,11 @@ export function Campaign() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [influencerProfile, setInfluencerProfile] = useState<any>(null)
+  const [isUpdatingPhase, setIsUpdatingPhase] = useState(false)
+  const [isSubmittingLiveUrl, setIsSubmittingLiveUrl] = useState(false)
+  const [liveUrlInput, setLiveUrlInput] = useState("")
+  const [isSubmittingContent, setIsSubmittingContent] = useState(false)
+  const [isReviewingContent, setIsReviewingContent] = useState(false)
 
   const fetchCampaignData = async () => {
     setIsLoading(true)
@@ -128,6 +133,7 @@ export function Campaign() {
 
   const handleSubmitContent = async () => {
     if (!assignment || (!contentUrl && !selectedFile)) return
+    setIsSubmittingContent(true)
     try {
       // In a real app, we would upload the file to a cloud storage here and get the URL back.
       // Since we don't have an upload endpoint, we will use the filename or the provided URL.
@@ -142,21 +148,56 @@ export function Campaign() {
       setPreviewUrl("")
       setAlertState({ isOpen: true, title: "Success", message: "Content submitted successfully!", isError: false })
       fetchCampaignData()
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to submit content", error)
-      setAlertState({ isOpen: true, title: "Error", message: "Failed to submit content", isError: true })
+      setAlertState({ isOpen: true, title: "Error", message: error.response?.data?.detail || "Failed to submit content", isError: true })
+    } finally {
+      setIsSubmittingContent(false)
     }
   }
 
   const handleReviewContent = async (contentId: number, status: string) => {
+    setIsReviewingContent(true)
     try {
       await apiClient.patch(`/content/${contentId}/review`, {
-        status,
+        decision: status,
         note: status === 'changes_requested' ? "Please adjust the lighting." : "Looks great!"
       })
       fetchCampaignData()
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to review content", error)
+      setAlertState({ isOpen: true, title: "Error", message: error.response?.data?.detail || "Failed to review content", isError: true })
+    } finally {
+      setIsReviewingContent(false)
+    }
+  }
+
+  const handleUpdatePhase = async (newPhase: string) => {
+    if (!assignment) return
+    setIsUpdatingPhase(true)
+    try {
+      await apiClient.patch(`/assignments/${assignment.id}/phase`, { phase: newPhase })
+      fetchCampaignData()
+    } catch (error: any) {
+      console.error("Failed to update phase", error)
+      setAlertState({ isOpen: true, title: "Error", message: error.response?.data?.detail || "Failed to update phase", isError: true })
+    } finally {
+      setIsUpdatingPhase(false)
+    }
+  }
+
+  const handleSubmitLiveUrl = async () => {
+    if (!assignment || !liveUrlInput.trim()) return
+    setIsSubmittingLiveUrl(true)
+    try {
+      await apiClient.post(`/assignments/${assignment.id}/live-url`, { live_url: liveUrlInput.trim() })
+      setLiveUrlInput("")
+      fetchCampaignData()
+    } catch (error: any) {
+      console.error("Failed to submit live URL", error)
+      setAlertState({ isOpen: true, title: "Error", message: error.response?.data?.detail || "Failed to submit live URL", isError: true })
+    } finally {
+      setIsSubmittingLiveUrl(false)
     }
   }
 
@@ -405,54 +446,121 @@ export function Campaign() {
             </CardHeader>
             <CardContent>
               {isInfluencer && assignment && (
-                <div className="mb-8 border-2 border-dashed border-border/60 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-card transition-colors hover:bg-muted/10">
-                  <input 
-                    type="file" 
-                    className="hidden" 
-                    ref={fileInputRef} 
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setSelectedFile(e.target.files[0])
-                        setPreviewUrl(URL.createObjectURL(e.target.files[0]))
-                      }
-                    }}
-                    accept="image/*,video/*"
-                  />
-                  
-                  {!selectedFile ? (
-                    <>
+                <div className="mb-8">
+                  {assignment.current_phase === 'brief_sent' && (
+                    <div className="border rounded-xl p-8 flex flex-col items-center justify-center text-center bg-card">
                       <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <FiUploadCloud className="h-8 w-8 text-primary" />
+                        <FiFileText className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="font-semibold text-lg mb-2">Upload Content</h3>
+                      <h3 className="font-semibold text-lg mb-2">Campaign Brief Sent</h3>
                       <p className="text-sm text-muted-foreground mb-6 max-w-sm">
-                        Select a file from your computer to submit as draft content for this campaign.
+                        The brand has accepted your application and sent a brief. Please accept to begin content creation.
                       </p>
-                      <Button onClick={() => fileInputRef.current?.click()} variant="outline" className="px-8 border-primary/20 hover:bg-primary/5">
-                        Select File
+                      <Button onClick={() => handleUpdatePhase('content_creation')} disabled={isUpdatingPhase} className="px-8">
+                        {isUpdatingPhase ? 'Accepting...' : 'Accept Brief'}
                       </Button>
-                    </>
-                  ) : (
-                    <div className="w-full max-w-sm flex flex-col items-center">
-                      <div className="aspect-video relative rounded-lg overflow-hidden border bg-muted mb-4 w-full shadow-sm">
-                        {selectedFile.type.startsWith('image/') ? (
-                          <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
-                        ) : (
-                          <video src={previewUrl} className="w-full h-full object-cover" controls />
-                        )}
-                      </div>
-                      <div className="flex items-center justify-between w-full mb-6 p-3 bg-secondary/50 border rounded-lg">
-                        <div className="flex items-center gap-3 overflow-hidden pr-4">
-                          <FiImage className="h-5 w-5 text-muted-foreground shrink-0" />
-                          <span className="text-sm font-medium truncate">{selectedFile.name}</span>
+                    </div>
+                  )}
+
+                  {assignment.current_phase === 'content_creation' && (
+                    <div className="border-2 border-dashed border-border/60 rounded-xl p-8 flex flex-col items-center justify-center text-center bg-card transition-colors hover:bg-muted/10">
+                      <input 
+                        type="file" 
+                        className="hidden" 
+                        ref={fileInputRef} 
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            setSelectedFile(e.target.files[0])
+                            setPreviewUrl(URL.createObjectURL(e.target.files[0]))
+                          }
+                        }}
+                        accept="image/*,video/*"
+                      />
+                      
+                      {!selectedFile ? (
+                        <>
+                          <div className="h-16 w-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <FiUploadCloud className="h-8 w-8 text-primary" />
+                          </div>
+                          <h3 className="font-semibold text-lg mb-2">Upload Content</h3>
+                          <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+                            Select a file from your computer to submit as draft content for this campaign.
+                          </p>
+                          <Button onClick={() => fileInputRef.current?.click()} variant="outline" className="px-8 border-primary/20 hover:bg-primary/5">
+                            Select File
+                          </Button>
+                        </>
+                      ) : (
+                        <div className="w-full max-w-sm flex flex-col items-center">
+                          <div className="aspect-video relative rounded-lg overflow-hidden border bg-muted mb-4 w-full shadow-sm">
+                            {selectedFile.type.startsWith('image/') ? (
+                              <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+                            ) : (
+                              <video src={previewUrl} className="w-full h-full object-cover" controls />
+                            )}
+                          </div>
+                          <div className="flex items-center justify-between w-full mb-6 p-3 bg-secondary/50 border rounded-lg">
+                            <div className="flex items-center gap-3 overflow-hidden pr-4">
+                              <FiImage className="h-5 w-5 text-muted-foreground shrink-0" />
+                              <span className="text-sm font-medium truncate">{selectedFile.name}</span>
+                            </div>
+                            <Button variant="ghost" size="sm" onClick={() => { setSelectedFile(null); setPreviewUrl(""); }} className="h-8 text-xs shrink-0">
+                              Change
+                            </Button>
+                          </div>
+                          <Button className="w-full" onClick={handleSubmitContent} disabled={isSubmittingContent}>
+                            {isSubmittingContent ? 'Submitting...' : 'Submit Content'}
+                          </Button>
                         </div>
-                        <Button variant="ghost" size="sm" onClick={() => { setSelectedFile(null); setPreviewUrl(""); }} className="h-8 text-xs shrink-0">
-                          Change
+                      )}
+                    </div>
+                  )}
+
+                  {assignment.current_phase === 'review' && (
+                    <div className="border rounded-xl p-8 flex flex-col items-center justify-center text-center bg-card">
+                      <div className="h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <FiClock className="h-8 w-8 text-blue-600" />
+                      </div>
+                      <h3 className="font-semibold text-lg mb-2">Under Review</h3>
+                      <p className="text-sm text-muted-foreground max-w-sm">
+                        Your content has been submitted and is currently under review by the brand.
+                      </p>
+                    </div>
+                  )}
+
+                  {assignment.current_phase === 'approved' && (
+                    <div className="border rounded-xl p-8 flex flex-col items-center justify-center text-center bg-card">
+                      <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <FiCheckCircle className="h-8 w-8 text-green-600" />
+                      </div>
+                      <h3 className="font-semibold text-lg mb-2">Content Approved!</h3>
+                      <p className="text-sm text-muted-foreground mb-6 max-w-sm">
+                        Your content has been approved. Please post it to your social media and submit the live URL below.
+                      </p>
+                      <div className="flex gap-2 w-full max-w-md">
+                        <Input 
+                          placeholder="https://instagram.com/p/..." 
+                          value={liveUrlInput}
+                          onChange={(e) => setLiveUrlInput(e.target.value)}
+                        />
+                        <Button onClick={handleSubmitLiveUrl} disabled={!liveUrlInput.trim() || isSubmittingLiveUrl}>
+                          {isSubmittingLiveUrl ? 'Submitting...' : 'Submit Link'}
                         </Button>
                       </div>
-                      <Button className="w-full" onClick={handleSubmitContent}>
-                        Submit Content
-                      </Button>
+                    </div>
+                  )}
+
+                  {(assignment.current_phase === 'live' || assignment.current_phase === 'completed') && (
+                    <div className="border rounded-xl p-8 flex flex-col items-center justify-center text-center bg-card">
+                      <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <FiCheckCircle className="h-8 w-8 text-green-600" />
+                      </div>
+                      <h3 className="font-semibold text-lg mb-2">Live Post Submitted</h3>
+                      <p className="text-sm text-muted-foreground max-w-sm">
+                        {assignment.current_phase === 'completed' 
+                          ? "This assignment has been marked as completed. Great job!" 
+                          : "Your live post link has been submitted and the brand will mark the assignment as completed soon."}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -492,7 +600,7 @@ export function Campaign() {
                           </div>
                         </div>
                       
-                      {isBrand && content.status === 'pending' && (
+                      {isBrand && content.status === 'pending_review' && (
                         <div className="p-3 bg-muted/30 border-t flex gap-2">
                           <Button size="sm" variant="outline" className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50" onClick={() => handleReviewContent(content.id, "changes_requested")}>
                             <FiX className="mr-2 h-4 w-4" /> Request Changes
@@ -513,6 +621,27 @@ export function Campaign() {
                   description="Content drafts will appear here once submitted."
                   className="min-h-[200px] border-none shadow-none bg-muted/20"
                 />
+              )}
+
+              {isBrand && assignment && (assignment.current_phase === 'live' || assignment.current_phase === 'completed') && (
+                <div className="mt-8 border rounded-xl p-6 bg-secondary/20">
+                  <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                    <FiCheckCircle className="text-green-600" /> Live Post Submitted
+                  </h3>
+                  <div className="flex flex-col gap-4">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Live URL:</p>
+                      <a href={assignment.live_url} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium break-all">
+                        {assignment.live_url || "Link not available"}
+                      </a>
+                    </div>
+                    {assignment.current_phase === 'live' && (
+                      <Button onClick={() => handleUpdatePhase('completed')} disabled={isUpdatingPhase} className="w-full sm:w-auto self-start bg-green-600 hover:bg-green-700">
+                        {isUpdatingPhase ? 'Marking Complete...' : 'Mark Assignment Completed'}
+                      </Button>
+                    )}
+                  </div>
+                </div>
               )}
             </CardContent>
           </Card>

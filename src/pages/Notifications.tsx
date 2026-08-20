@@ -10,8 +10,15 @@ import type { AppNotification } from "@/types"
 type FilterTab = "all" | "campaign" | "message" | "system"
 
 export function Notifications() {
-  const { notifications, markAsRead } = useNotifications()
+  const { notifications, markAsRead, markAllAsRead, unreadCount } = useNotifications()
   const [activeTab, setActiveTab] = useState<FilterTab>("all")
+  const [isMarkingAll, setIsMarkingAll] = useState(false)
+
+  const handleMarkAllAsRead = async () => {
+    setIsMarkingAll(true)
+    await markAllAsRead()
+    setIsMarkingAll(false)
+  }
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
@@ -66,11 +73,18 @@ export function Notifications() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Notifications</h1>
-        <p className="text-muted-foreground mt-1">
-          Stay updated on your campaigns, messages, and account alerts.
-        </p>
+      <div className="flex justify-between items-start">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Notifications</h1>
+          <p className="text-muted-foreground mt-1">
+            Stay updated on your campaigns, messages, and account alerts.
+          </p>
+        </div>
+        {unreadCount > 0 && (
+          <Button variant="outline" size="sm" onClick={handleMarkAllAsRead} disabled={isMarkingAll}>
+            {isMarkingAll ? "Marking..." : "Mark all as read"}
+          </Button>
+        )}
       </div>
 
       <div className="flex flex-wrap gap-2 mb-6">
