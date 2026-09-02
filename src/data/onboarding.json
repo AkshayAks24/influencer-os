@@ -1,0 +1,83 @@
+{
+  "niches": [
+    { "id": "technology", "label": "Technology", "emoji": "💻" },
+    { "id": "fitness", "label": "Fitness", "emoji": "💪" },
+    { "id": "fashion", "label": "Fashion", "emoji": "👗" },
+    { "id": "beauty", "label": "Beauty", "emoji": "💄" },
+    { "id": "food", "label": "Food", "emoji": "🍜" },
+    { "id": "travel", "label": "Travel", "emoji": "✈️" },
+    { "id": "finance", "label": "Finance", "emoji": "💰" },
+    { "id": "education", "label": "Education", "emoji": "📚" },
+    { "id": "gaming", "label": "Gaming", "emoji": "🎮" },
+    { "id": "lifestyle", "label": "Lifestyle", "emoji": "🌿" },
+    { "id": "other", "label": "Other", "emoji": "✨" }
+  ],
+  "audiences": [
+    { "id": "students", "label": "Students", "emoji": "🎓" },
+    { "id": "professionals", "label": "Professionals", "emoji": "💼" },
+    { "id": "entrepreneurs", "label": "Entrepreneurs", "emoji": "🚀" },
+    { "id": "parents", "label": "Parents", "emoji": "👨‍👩‍👧" },
+    { "id": "creators", "label": "Creators", "emoji": "🎨" },
+    { "id": "fitness-enthusiasts", "label": "Fitness Enthusiasts", "emoji": "🏋️" },
+    { "id": "tech-enthusiasts", "label": "Tech Enthusiasts", "emoji": "⚙️" },
+    { "id": "gen-z", "label": "Gen Z", "emoji": "⚡" }
+  ],
+  "locations": [
+    "India", "United States", "United Kingdom", "Canada", "Australia",
+    "Germany", "France", "Brazil", "Japan", "South Korea",
+    "Indonesia", "Philippines", "Nigeria", "Mexico", "UAE",
+    "Singapore", "Malaysia", "Thailand", "Vietnam", "Other"
+  ],
+  "languages": [
+    { "id": "english", "label": "English", "emoji": "🇬🇧" },
+    { "id": "hindi", "label": "Hindi", "emoji": "🇮🇳" },
+    { "id": "malayalam", "label": "Malayalam", "emoji": "🇮🇳" },
+    { "id": "tamil", "label": "Tamil", "emoji": "🇮🇳" },
+    { "id": "telugu", "label": "Telugu", "emoji": "🇮🇳" },
+    { "id": "spanish", "label": "Spanish", "emoji": "🇪🇸" },
+    { "id": "portuguese", "label": "Portuguese", "emoji": "🇧🇷" },
+    { "id": "french", "label": "French", "emoji": "🇫🇷" },
+    { "id": "german", "label": "German", "emoji": "🇩🇪" },
+    { "id": "japanese", "label": "Japanese", "emoji": "🇯🇵" },
+    { "id": "korean", "label": "Korean", "emoji": "🇰🇷" },
+    { "id": "arabic", "label": "Arabic", "emoji": "🇸🇦" }
+  ],
+  "goals": [
+    { "id": "grow-followers", "label": "Grow my followers", "emoji": "🚀" },
+    { "id": "more-views", "label": "Get more views", "emoji": "👀" },
+    { "id": "engagement", "label": "Increase engagement", "emoji": "💬" },
+    { "id": "brand-deals", "label": "Get brand deals", "emoji": "🤝" },
+    { "id": "make-money", "label": "Make more money", "emoji": "💰" },
+    { "id": "personal-brand", "label": "Build my personal brand", "emoji": "🎯" }
+  ],
+  "contentFormats": [
+    { "id": "reels", "label": "Reels", "emoji": "🎥" },
+    { "id": "photos", "label": "Photos", "emoji": "📸" },
+    { "id": "carousels", "label": "Carousels", "emoji": "📚" },
+    { "id": "youtube", "label": "YouTube", "emoji": "▶️" },
+    { "id": "podcasts", "label": "Podcasts", "emoji": "🎙️" },
+    { "id": "stories", "label": "Stories", "emoji": "📱" }
+  ],
+  "faceOptions": [
+    { "id": "yes", "label": "Yes", "emoji": "😊" },
+    { "id": "sometimes", "label": "Sometimes", "emoji": "🎭" },
+    { "id": "no", "label": "No", "emoji": "🙈" }
+  ],
+  "challenges": [
+    { "id": "finding-ideas", "label": "Finding ideas", "emoji": "💡" },
+    { "id": "low-views", "label": "Low views", "emoji": "📉" },
+    { "id": "slow-growth", "label": "Slow follower growth", "emoji": "🐌" },
+    { "id": "audience", "label": "Understanding my audience", "emoji": "🎯" },
+    { "id": "trends", "label": "Finding trends early", "emoji": "🔥" },
+    { "id": "time", "label": "Not enough time", "emoji": "⏰" },
+    { "id": "monetization", "label": "Monetization", "emoji": "💰" }
+  ],
+  "analysisSteps": [
+    { "id": "niche", "label": "Understanding your niche" },
+    { "id": "content", "label": "Analyzing your content" },
+    { "id": "topics", "label": "Identifying your best-performing topics" },
+    { "id": "audience", "label": "Understanding your audience" },
+    { "id": "style", "label": "Learning your content style" },
+    { "id": "profile", "label": "Preparing your profile" }
+  ]
+}

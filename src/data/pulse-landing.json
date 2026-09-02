@@ -1,0 +1,110 @@
+{
+  "hero": {
+    "badge": "✨ AI-Powered Content Intelligence",
+    "headline": "Know what to\ncreate next.",
+    "subtext": "Creator Pulse analyzes your content, audience, and niche trends to surface personalized content opportunities designed to help you grow.",
+    "cta": "Get Started — It's Free",
+    "secondaryCta": "See how it works"
+  },
+  "positioning": {
+    "tagline": "Trends are everywhere.",
+    "highlight": "Creator Pulse tells you which ones matter to you."
+  },
+  "process": {
+    "headline": "From trend to content\nin four steps.",
+    "subtext": "Stop guessing. Start creating with confidence.",
+    "steps": [
+      {
+        "emoji": "🔎",
+        "number": "01",
+        "title": "Discover",
+        "subtitle": "emerging trends in your niche",
+        "description": "We scan millions of signals across TikTok, Instagram, YouTube, and Twitter to surface what's actually gaining momentum — not just what's already viral.",
+        "color": "lime"
+      },
+      {
+        "emoji": "🎯",
+        "number": "02",
+        "title": "Match",
+        "subtitle": "trends with your content & audience",
+        "description": "Not every trend is for you. Our AI matches trends to your niche, audience demographics, content style, and past performance to find your highest-potential opportunities.",
+        "color": "pink"
+      },
+      {
+        "emoji": "💡",
+        "number": "03",
+        "title": "Create",
+        "subtitle": "personalized content ideas & hooks",
+        "description": "Get ready-to-use content angles, hooks, and formats tailored specifically for your voice. Like having a creative director who knows your brand inside out.",
+        "color": "purple"
+      },
+      {
+        "emoji": "📈",
+        "number": "04",
+        "title": "Grow",
+        "subtitle": "with smarter content decisions",
+        "description": "Every recommendation is designed to help you grow. Track which opportunities you acted on and see how they performed against your goals.",
+        "color": "orange"
+      }
+    ]
+  },
+  "features": {
+    "headline": "Not another\nanalytics dashboard.",
+    "subtext": "Creator Pulse feels like TikTok's discovery, Pinterest's inspiration, Spotify's personalization — powered by AI intelligence.",
+    "items": [
+      {
+        "emoji": "🔥",
+        "title": "Opportunity Cards",
+        "description": "Every trend becomes a personalized opportunity with match scores, content angles, and real examples from creators in your niche."
+      },
+      {
+        "emoji": "🧠",
+        "title": "Why You?",
+        "description": "Every recommendation explains exactly why it's relevant to you — your audience, your style, your growth goals."
+      },
+      {
+        "emoji": "✨",
+        "title": "AI Creative Partner",
+        "description": "Ask for another angle, a stronger hook, beginner-friendly versions, or faceless formats. Collaborate with AI that understands creators."
+      },
+      {
+        "emoji": "📱",
+        "title": "Content-First Design",
+        "description": "See real content examples, not just charts. Understand what a trend actually looks like before you create."
+      },
+      {
+        "emoji": "⚡",
+        "title": "Real-Time Signals",
+        "description": "Catch trends as they emerge, not after they peak. Our engine detects momentum shifts before they go mainstream."
+      },
+      {
+        "emoji": "🎯",
+        "title": "Personalized Feed",
+        "description": "Your home feed shows only what matters to you. No noise, no irrelevant trends — just your next best move."
+      }
+    ]
+  },
+  "social": {
+    "headline": "Built for creators\nwho want to grow.",
+    "stats": [
+      { "value": "10K+", "label": "Creators using Pulse" },
+      { "value": "50M+", "label": "Trend signals analyzed daily" },
+      { "value": "89%", "label": "Say they create with more confidence" }
+    ]
+  },
+  "cta": {
+    "headline": "Ready to know\nwhat to create next?",
+    "subtext": "Join thousands of creators who stopped guessing and started growing.",
+    "button": "Get Started Free",
+    "note": "No credit card required. Set up in 2 minutes."
+  },
+  "footer": {
+    "brand": "Creator Pulse",
+    "tagline": "Know what to create next.",
+    "links": [
+      { "label": "Login", "href": "/login" },
+      { "label": "Register", "href": "/onboarding" },
+      { "label": "Pricing", "href": "/pricing" }
+    ]
+  }
+}

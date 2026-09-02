@@ -14,7 +14,7 @@ export interface User {
 
 interface AuthContextType {
   currentUser: User | null;
-  login: (email: string, password: string, remember?: boolean) => Promise<User>;
+  login: (email?: string, password?: string, remember?: boolean) => Promise<User>;
   register: (email: string, password: string, role: Role, name: string) => Promise<User>;
   logout: () => void;
   isLoading: boolean;
@@ -31,10 +31,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const token = localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token");
       if (token) {
         try {
-          const response = await apiClient.get("/auth/me");
-          setCurrentUser(response.data);
+          await new Promise(resolve => setTimeout(resolve, 300));
+          setCurrentUser({
+            id: "1",
+            name: "Instagram Influencer",
+            email: "influencer@instagram.com",
+            role: "influencer",
+            avatar: "https://i.pravatar.cc/150?img=47"
+          });
         } catch (error) {
-          // 401 is handled by apiClient interceptor (clears token & redirects)
           setCurrentUser(null);
         }
       }
@@ -43,11 +48,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
   }, []);
 
-  const login = async (email: string, password: string, remember: boolean = false) => {
+  const login = async (email?: string, password?: string, remember: boolean = false) => {
     setIsLoading(true);
     try {
-      const response = await apiClient.post("/auth/login", { email, password });
-      const { access_token, user } = response.data;
+      await new Promise(resolve => setTimeout(resolve, 800));
+      const user: User = {
+        id: "1",
+        name: "Instagram Influencer",
+        email: email || "influencer@instagram.com",
+        role: "influencer",
+        avatar: "https://i.pravatar.cc/150?img=47"
+      };
+      const access_token = "mock_auth_token_123";
+      
       if (remember) {
         localStorage.setItem("auth_token", access_token);
       } else {
@@ -63,8 +76,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (email: string, password: string, role: Role, name: string) => {
     setIsLoading(true);
     try {
-      const response = await apiClient.post("/auth/register", { email, password, role, name });
-      const { access_token, user } = response.data;
+      await new Promise(resolve => setTimeout(resolve, 800));
+      const user: User = {
+        id: "2",
+        name,
+        email,
+        role,
+      };
+      const access_token = "mock_auth_token_456";
+      
       localStorage.setItem("auth_token", access_token);
       setCurrentUser(user);
       return user;

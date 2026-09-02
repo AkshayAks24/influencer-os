@@ -1,0 +1,208 @@
+{
+  "greeting": {
+    "headline": "yo 👋\nwe found something\nyou might wanna make.",
+    "subtext": "Here's what's moving in your world right now."
+  },
+  "trends": [
+    {
+      "id": "trend-001",
+      "category": "hot",
+      "title": "AI Coding Agents",
+      "matchPercent": 92,
+      "description": "People in your niche are starting to talk about this. Interest is accelerating fast.",
+      "angle": "Show how an AI agent builds a real Python project from scratch — no editing, raw screencast.",
+      "momentum": "+48% interest this week",
+      "contentPreviews": [
+        {
+          "id": "cp-001",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=300&h=530&fit=crop",
+          "creatorName": "@devtips",
+          "platform": "instagram"
+        },
+        {
+          "id": "cp-002",
+          "type": "short",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=530&fit=crop",
+          "creatorName": "@codewithme",
+          "platform": "youtube"
+        },
+        {
+          "id": "cp-003",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=300&h=530&fit=crop",
+          "creatorName": "@techmaya",
+          "platform": "tiktok"
+        }
+      ],
+      "whyYou": [
+        "Your audience follows Python content",
+        "Educational videos perform well for you",
+        "Similar creators are growing with this topic",
+        "It matches your current growth goal"
+      ],
+      "tags": ["AI", "coding", "developer", "python"]
+    },
+    {
+      "id": "trend-002",
+      "category": "emerging",
+      "title": "Lo-Fi Study Aesthetic",
+      "matchPercent": 78,
+      "description": "A quiet wave of ambient study content is gaining traction. Your vibe fits perfectly.",
+      "angle": "Create a 'study with me' reel using lo-fi beats and your actual workspace setup.",
+      "momentum": "+22% interest this week",
+      "contentPreviews": [
+        {
+          "id": "cp-004",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=300&h=530&fit=crop",
+          "creatorName": "@studyvibes",
+          "platform": "instagram"
+        },
+        {
+          "id": "cp-005",
+          "type": "short",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&h=530&fit=crop",
+          "creatorName": "@calmcoder",
+          "platform": "youtube"
+        },
+        {
+          "id": "cp-006",
+          "type": "post",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=300&fit=crop",
+          "creatorName": "@aestheticdesk",
+          "platform": "instagram"
+        }
+      ],
+      "whyYou": [
+        "Your aesthetic content gets 2x more saves",
+        "Lo-fi is trending in your audience demo",
+        "You haven't posted ambient content yet — fresh territory"
+      ],
+      "tags": ["aesthetic", "study", "lo-fi", "ambient"]
+    },
+    {
+      "id": "trend-003",
+      "category": "momentum",
+      "title": "Micro-SaaS Build in Public",
+      "matchPercent": 85,
+      "description": "Founders sharing their build journeys are gaining massive engagement. Your dev audience loves this.",
+      "angle": "Document building a micro-SaaS from idea to first $100 MRR — raw and unfiltered.",
+      "momentum": "+34% interest this week",
+      "contentPreviews": [
+        {
+          "id": "cp-007",
+          "type": "tweet",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=300&h=300&fit=crop",
+          "creatorName": "@indiehacker",
+          "platform": "twitter"
+        },
+        {
+          "id": "cp-008",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=530&fit=crop",
+          "creatorName": "@shipfast",
+          "platform": "tiktok"
+        },
+        {
+          "id": "cp-009",
+          "type": "short",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=300&h=530&fit=crop",
+          "creatorName": "@buildlog",
+          "platform": "youtube"
+        }
+      ],
+      "whyYou": [
+        "Your audience engages with entrepreneurship content",
+        "Build-in-public threads get 3x your average reach",
+        "You've mentioned SaaS in previous content",
+        "Developer + business crossover is your sweet spot"
+      ],
+      "tags": ["SaaS", "startup", "build-in-public", "indie"]
+    },
+    {
+      "id": "trend-004",
+      "category": "ai_idea",
+      "title": "AI-Powered Photo Edits",
+      "matchPercent": 71,
+      "description": "Creators are using AI to transform ordinary photos into cinematic edits. Viral potential is high.",
+      "angle": "Before vs after: transform a boring phone photo into a movie still using free AI tools.",
+      "momentum": "+56% interest this week",
+      "contentPreviews": [
+        {
+          "id": "cp-010",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=300&h=530&fit=crop",
+          "creatorName": "@aieditpro",
+          "platform": "instagram"
+        },
+        {
+          "id": "cp-011",
+          "type": "short",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&h=530&fit=crop",
+          "creatorName": "@visualcraft",
+          "platform": "youtube"
+        },
+        {
+          "id": "cp-012",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=300&h=530&fit=crop",
+          "creatorName": "@snapmagic",
+          "platform": "tiktok"
+        }
+      ],
+      "whyYou": [
+        "Visual content drives your highest engagement",
+        "AI tools content is your fastest growing category",
+        "Before/after format has worked for you before"
+      ],
+      "tags": ["AI", "photo editing", "visual", "tools"]
+    },
+    {
+      "id": "trend-005",
+      "category": "insight",
+      "title": "Notion Templates for Creators",
+      "matchPercent": 67,
+      "description": "Creator productivity tools are a growing niche. Templates are both content and product.",
+      "angle": "Share your actual creator workflow Notion setup — then link to a free template download.",
+      "momentum": "+18% interest this week",
+      "contentPreviews": [
+        {
+          "id": "cp-013",
+          "type": "reel",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=300&h=530&fit=crop",
+          "creatorName": "@notionpro",
+          "platform": "instagram"
+        },
+        {
+          "id": "cp-014",
+          "type": "post",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=300&h=300&fit=crop",
+          "creatorName": "@prodtools",
+          "platform": "twitter"
+        },
+        {
+          "id": "cp-015",
+          "type": "short",
+          "thumbnailUrl": "https://images.unsplash.com/photo-1517842645767-c639042777db?w=300&h=530&fit=crop",
+          "creatorName": "@templateking",
+          "platform": "youtube"
+        }
+      ],
+      "whyYou": [
+        "Productivity content resonates with your audience",
+        "Templates can become a revenue stream for you",
+        "Your audience is 68% creators who use Notion"
+      ],
+      "tags": ["Notion", "productivity", "templates", "creator tools"]
+    }
+  ],
+  "aiActions": [
+    { "id": "action-1", "label": "Another angle", "emoji": "💡" },
+    { "id": "action-2", "label": "Make it a Reel", "emoji": "🎬" },
+    { "id": "action-3", "label": "Stronger hook", "emoji": "🔥" },
+    { "id": "action-4", "label": "Beginner friendly", "emoji": "🌱" },
+    { "id": "action-5", "label": "No face needed", "emoji": "🙈" },
+    { "id": "action-6", "label": "Give me 3 ideas", "emoji": "📝" }
+  ]
+}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -72,4 +73,50 @@
     animation: blob-morph 30s infinite alternate-reverse ease-in-out;
     animation-delay: -5s;
   }
+
+  /* Hide scrollbar but keep scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Creator Pulse — light theme overrides */
+.pulse-theme {
+  background-color: #F7F7F5;
+  color: #111111;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.pulse-theme ::-webkit-scrollbar-track {
+  background: #F7F7F5;
+}
+
+.pulse-theme ::-webkit-scrollbar-thumb {
+  background: #E5E5E3;
+  border-radius: 4px;
+}
+
+.pulse-theme ::-webkit-scrollbar-thumb:hover {
+  background: #CCCCCA;
+}
+
+.pulse-theme * {
+  scrollbar-color: #E5E5E3 #F7F7F5;
+}
+
+.pulse-theme input:-webkit-autofill,
+.pulse-theme input:-webkit-autofill:hover,
+.pulse-theme input:-webkit-autofill:focus,
+.pulse-theme input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #FFFFFF inset !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+.pulse-theme ::selection {
+  background-color: #C7FF3D;
+  color: #111111;
 }

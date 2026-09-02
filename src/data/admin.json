@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "totalInfluencers": 124,
+    "researching": 18,
+    "trends": 342,
+    "aiProcessing": 7,
+    "reports": 96
+  },
+  "influencers": [
+    {
+      "id": "1",
+      "name": "Sarah Jenkins",
+      "niche": "Technology",
+      "platform": "Instagram, YouTube",
+      "goal": "Grow followers",
+      "status": "researching"
+    },
+    {
+      "id": "2",
+      "name": "Alex Costa",
+      "niche": "Fitness",
+      "platform": "TikTok",
+      "goal": "Brand deals",
+      "status": "active"
+    },
+    {
+      "id": "3",
+      "name": "Emma Woods",
+      "niche": "Lifestyle",
+      "platform": "YouTube",
+      "goal": "Increase engagement",
+      "status": "pending"
+    },
+    {
+      "id": "4",
+      "name": "Devin AI",
+      "niche": "Programming",
+      "platform": "Twitter, YouTube",
+      "goal": "Personal brand",
+      "status": "active"
+    },
+    {
+      "id": "5",
+      "name": "Chef Marco",
+      "niche": "Food",
+      "platform": "Instagram",
+      "goal": "More views",
+      "status": "researching"
+    }
+  ],
+  "creatorProfiles": {
+    "1": {
+      "id": "1",
+      "name": "Sarah Jenkins",
+      "niche": "Technology",
+      "platform": "Instagram, YouTube",
+      "goal": "Grow followers",
+      "status": "researching",
+      "audience": "Developers, Students",
+      "location": "United States",
+      "language": "English",
+      "contentPreferences": ["Reels", "YouTube", "Short-form video"],
+      "connectedAccounts": ["Instagram (@sarah_codes)", "YouTube (SarahJenkinsTech)"],
+      "topContent": "Python automation scripts, AI tool reviews",
+      "historicalPerformance": "Avg. 15k views per reel, 4.2% engagement rate",
+      "creatorDNA": {
+        "bestContent": "Practical coding tutorials and automation tips",
+        "style": "Educational, fast-paced, practical",
+        "avoid": "Long talking-head intros, generic tech news"
+      }
+    }
+  },
+  "trends": [
+    {
+      "id": "1",
+      "name": "AI Coding Agents",
+      "niche": "Technology",
+      "stage": "Emerging",
+      "platforms": "YouTube, Twitter",
+      "strength": 87,
+      "date": "Aug 20 - Aug 28",
+      "status": "active",
+      "description": "The rise of autonomous coding agents like Devin and open-source alternatives. Creators are showcasing workflows where AI writes full applications with minimal human intervention.",
+      "growthRate": "+145% MoM",
+      "demographics": "75% Male, 18-35, Software Engineers, Tech Enthusiasts",
+      "examples": ["'I let AI build my SaaS in 24 hours'", "'Devin vs AutoGPT: Which is better?'"],
+      "advice": "Focus on practical, end-to-end workflows. Show the failures alongside the successes to build authenticity."
+    },
+    {
+      "id": "2",
+      "name": "Matcha Routine",
+      "niche": "Lifestyle",
+      "stage": "Peak",
+      "platforms": "TikTok, Instagram",
+      "strength": 92,
+      "date": "Aug 15 - Aug 25",
+      "status": "active",
+      "description": "Aesthetic, slow-morning routines centered around making premium matcha lattes at home using traditional bamboo whisks and high-quality ceremonial grade matcha.",
+      "growthRate": "+85% MoM",
+      "demographics": "80% Female, 18-30, Wellness Enthusiasts, Students",
+      "examples": ["'My 6am slow morning matcha routine'", "'Stop drinking coffee, switch to this matcha'"],
+      "advice": "Emphasize high-quality audio (ASMR) of the whisking process. Soft, natural lighting is crucial for aesthetic appeal."
+    }
+  ],
+  "aiProcessing": [
+    {
+      "id": "1",
+      "influencer": "Sarah Jenkins",
+      "type": "Trend Intelligence Report",
+      "started": "10 mins ago",
+      "status": "Processing",
+      "completed": "-"
+    },
+    {
+      "id": "2",
+      "influencer": "Alex Costa",
+      "type": "Trend Intelligence Report",
+      "started": "1 hour ago",
+      "status": "Ready",
+      "completed": "55 mins ago"
+    },
+    {
+      "id": "3",
+      "influencer": "Devin AI",
+      "type": "Trend Intelligence Report",
+      "started": "2 hours ago",
+      "status": "Failed",
+      "completed": "-",
+      "error": "Timeout generating recommendation"
+    }
+  ],
+  "aiRecommendations": {
+    "1": {
+      "id": "1",
+      "trend": "AI Coding Agents",
+      "match": 92,
+      "format": "30–45 sec Reel",
+      "angle": "Real project experiment",
+      "hook": "I gave an AI agent a real Python project. Here's what happened.",
+      "contentIdea": "Show the setup process briefly, then fast forward through the agent writing code, highlighting 1 specific error it made and how you fixed it.",
+      "difficulty": "Medium",
+      "upside": "High engagement from developers looking for practical use cases.",
+      "risk": "Requires actual coding knowledge to verify the output."
+    }
+  },
+  "reports": [
+    {
+      "id": "R-1001",
+      "influencer": "Sarah Jenkins",
+      "date": "Aug 29, 2026",
+      "opportunities": 4,
+      "emergingTrends": 2,
+      "status": "Ready",
+      "published": false
+    },
+    {
+      "id": "R-1002",
+      "influencer": "Alex Costa",
+      "date": "Aug 28, 2026",
+      "opportunities": 6,
+      "emergingTrends": 1,
+      "status": "Published",
+      "published": true
+    },
+    {
+      "id": "R-1003",
+      "influencer": "Devin AI",
+      "date": "Aug 29, 2026",
+      "opportunities": 0,
+      "emergingTrends": 0,
+      "status": "Failed",
+      "published": false
+    }
+  ],
+  "feedback": [
+    {
+      "id": "F-1",
+      "influencer": "Sarah Jenkins",
+      "recommendation": "AI Coding Agents - Real project experiment",
+      "feedback": "Positive",
+      "reason": "-",
+      "date": "Aug 25, 2026"
+    },
+    {
+      "id": "F-2",
+      "influencer": "Chef Marco",
+      "recommendation": "Matcha Routine - Recipe breakdown",
+      "feedback": "Negative",
+      "reason": "Not my style",
+      "date": "Aug 26, 2026"
+    },
+    {
+      "id": "F-3",
+      "influencer": "Alex Costa",
+      "recommendation": "Morning Routine 2026",
+      "feedback": "Negative",
+      "reason": "Already covered it",
+      "date": "Aug 27, 2026"
+    }
+  ]
+}

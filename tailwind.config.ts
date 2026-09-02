@@ -18,6 +18,8 @@ const config: Config = {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         serif: ["Fraunces", "serif"],
+        heading: ['"Space Grotesk"', "sans-serif"],
+        body: ['"Plus Jakarta Sans"', "sans-serif"],
       },
       colors: {
         background: "#0D1420",
@@ -80,6 +82,22 @@ const config: Config = {
           DEFAULT: "#5BC0DE",
           foreground: "#F3EFE6",
         },
+
+        // --- Creator Pulse palette ---
+        pulse: {
+          bg:       "#F7F7F5",
+          text:     "#111111",
+          white:    "#FFFFFF",
+          lime:     "#C7FF3D",
+          pink:     "#FF4FA3",
+          blue:     "#5B7CFF",
+          orange:   "#FF6B35",
+          purple:   "#8B5CF6",
+          muted:    "#888888",
+          border:   "#E5E5E3",
+          card:     "#FFFFFF",
+          elevated: "#F0F0ED",
+        },
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(to right, #D6A85A, #F0CD8E)',
@@ -87,6 +105,8 @@ const config: Config = {
       boxShadow: {
         'gold-glow': '0 0 20px rgba(214, 168, 90, 0.15)',
         'elevated': '0 4px 20px rgba(0, 0, 0, 0.4)',
+        'pulse-card': '0 2px 16px rgba(0, 0, 0, 0.06)',
+        'pulse-card-hover': '0 8px 30px rgba(0, 0, 0, 0.10)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -104,10 +124,26 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "wave": {
+          "0%": { transform: "rotate(0deg)" },
+          "10%": { transform: "rotate(14deg)" },
+          "20%": { transform: "rotate(-8deg)" },
+          "30%": { transform: "rotate(14deg)" },
+          "40%": { transform: "rotate(-4deg)" },
+          "50%": { transform: "rotate(10deg)" },
+          "60%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(0deg)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "1" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "wave": "wave 2.5s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
       },
     },
   },

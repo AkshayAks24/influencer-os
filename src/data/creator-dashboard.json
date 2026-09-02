@@ -1,0 +1,233 @@
+{
+  "account": {
+    "username": "@creator_pulse_user",
+    "profilePicUrl": "https://i.pravatar.cc/150?img=47",
+    "followers": 24300,
+    "following": 1120,
+    "totalPosts": 342,
+    "avgLikes": 1850,
+    "avgComments": 127,
+    "engagementRate": 4.8,
+    "reachLast30Days": 185000,
+    "impressionsLast30Days": 312000,
+    "followerGrowthPercent": 3.2,
+    "topAudience": {
+      "ageRange": "18-34",
+      "gender": "62% Female, 38% Male",
+      "topCities": ["Los Angeles", "New York", "London"]
+    }
+  },
+  "recentPosts": [
+    {
+      "id": "post-001",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop",
+      "caption": "Building the future with AI — one line of code at a time 🤖✨",
+      "type": "reel",
+      "likes": 3420,
+      "comments": 234,
+      "saves": 890,
+      "shares": 156,
+      "reach": 28500,
+      "impressions": 42000,
+      "engagementRate": 7.2,
+      "postedAt": "2026-08-30T14:00:00Z"
+    },
+    {
+      "id": "post-002",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop",
+      "caption": "My morning routine as a content creator — it's not what you think 🌅",
+      "type": "carousel",
+      "likes": 2180,
+      "comments": 189,
+      "saves": 567,
+      "shares": 98,
+      "reach": 19200,
+      "impressions": 31000,
+      "engagementRate": 5.6,
+      "postedAt": "2026-08-28T10:30:00Z"
+    },
+    {
+      "id": "post-003",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop",
+      "caption": "How I grew from 0 to 20K followers in 6 months — the real strategy 📈",
+      "type": "reel",
+      "likes": 4100,
+      "comments": 312,
+      "saves": 1200,
+      "shares": 245,
+      "reach": 35000,
+      "impressions": 52000,
+      "engagementRate": 8.1,
+      "postedAt": "2026-08-26T16:00:00Z"
+    },
+    {
+      "id": "post-004",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&h=400&fit=crop",
+      "caption": "My Notion setup for managing content calendars 📅",
+      "type": "image",
+      "likes": 1560,
+      "comments": 98,
+      "saves": 780,
+      "shares": 67,
+      "reach": 14000,
+      "impressions": 22000,
+      "engagementRate": 4.3,
+      "postedAt": "2026-08-24T12:00:00Z"
+    },
+    {
+      "id": "post-005",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop",
+      "caption": "Behind the scenes of launching my micro-SaaS product 🚀",
+      "type": "video",
+      "likes": 2890,
+      "comments": 201,
+      "saves": 645,
+      "shares": 134,
+      "reach": 24000,
+      "impressions": 38000,
+      "engagementRate": 6.5,
+      "postedAt": "2026-08-22T15:00:00Z"
+    },
+    {
+      "id": "post-006",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=400&h=400&fit=crop",
+      "caption": "AI just transformed this boring phone pic into a masterpiece 🎨",
+      "type": "reel",
+      "likes": 5200,
+      "comments": 389,
+      "saves": 1500,
+      "shares": 312,
+      "reach": 41000,
+      "impressions": 65000,
+      "engagementRate": 9.3,
+      "postedAt": "2026-08-20T11:00:00Z"
+    },
+    {
+      "id": "post-007",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=400&fit=crop",
+      "caption": "Study with me — 2 hours of deep work with lo-fi beats 📚",
+      "type": "video",
+      "likes": 1890,
+      "comments": 145,
+      "saves": 920,
+      "shares": 89,
+      "reach": 16500,
+      "impressions": 27000,
+      "engagementRate": 5.1,
+      "postedAt": "2026-08-18T09:00:00Z"
+    },
+    {
+      "id": "post-008",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop",
+      "caption": "The camera gear that actually matters (spoiler: it's not what influencers tell you) 📸",
+      "type": "carousel",
+      "likes": 2340,
+      "comments": 178,
+      "saves": 890,
+      "shares": 112,
+      "reach": 20000,
+      "impressions": 33000,
+      "engagementRate": 5.8,
+      "postedAt": "2026-08-16T13:00:00Z"
+    },
+    {
+      "id": "post-009",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=400&h=400&fit=crop",
+      "caption": "5 free tools every creator needs in 2026 🛠️",
+      "type": "reel",
+      "likes": 3670,
+      "comments": 267,
+      "saves": 1100,
+      "shares": 198,
+      "reach": 31000,
+      "impressions": 48000,
+      "engagementRate": 7.6,
+      "postedAt": "2026-08-14T17:00:00Z"
+    }
+  ],
+  "trendReports": [
+    {
+      "id": "report-001",
+      "title": "Your First Trend Intelligence Report",
+      "status": "preparing",
+      "requestedAt": "2026-09-02T08:00:00Z",
+      "completedAt": null,
+      "summary": "We're analyzing current trends relevant to your niche and matching them with your creator profile.",
+      "trendCount": 0,
+      "topTrends": [],
+      "matchScore": 0,
+      "niche": "Tech & Coding"
+    },
+    {
+      "id": "report-002",
+      "title": "Weekly Trend Pulse — Aug 25",
+      "status": "completed",
+      "requestedAt": "2026-08-25T10:00:00Z",
+      "completedAt": "2026-08-25T10:45:00Z",
+      "summary": "AI coding tools and lo-fi study content are surging in your niche. 3 high-match opportunities identified with actionable content angles tailored to your audience.",
+      "trendCount": 12,
+      "topTrends": ["AI Coding Agents", "Lo-Fi Study Aesthetic", "Micro-SaaS Build in Public"],
+      "matchScore": 87,
+      "niche": "Tech & Coding",
+      "audienceOverlap": 72,
+      "detailedInsights": [
+        { "trend": "AI Coding Agents", "momentum": "+48% this week", "matchPercent": 92, "suggestedAngle": "Show an AI agent building a Python project from scratch — raw screencast, no edits" },
+        { "trend": "Lo-Fi Study Aesthetic", "momentum": "+22% this week", "matchPercent": 78, "suggestedAngle": "Create a 'study with me' reel using lo-fi beats and your workspace setup" },
+        { "trend": "Micro-SaaS Build in Public", "momentum": "+34% this week", "matchPercent": 85, "suggestedAngle": "Document building a micro-SaaS from idea to first $100 MRR" }
+      ],
+      "contentOpportunities": [
+        "Post a Reel showing your AI coding workflow — educational AI content gets 3x saves",
+        "Create a lo-fi study ambient video — you haven't explored this format yet",
+        "Start a build-in-public thread — your dev + business audience crossover is strong"
+      ]
+    },
+    {
+      "id": "report-003",
+      "title": "Niche Deep Dive — Creator Tools",
+      "status": "completed",
+      "requestedAt": "2026-08-18T14:00:00Z",
+      "completedAt": "2026-08-18T14:30:00Z",
+      "summary": "Notion templates and productivity content are trending among creator audiences. High save-rate content identified. Templates as lead magnets are an untapped opportunity for your profile.",
+      "trendCount": 8,
+      "topTrends": ["Notion Templates", "Creator Productivity", "Digital Products"],
+      "matchScore": 74,
+      "niche": "Creator Economy",
+      "audienceOverlap": 58,
+      "detailedInsights": [
+        { "trend": "Notion Templates", "momentum": "+18% this week", "matchPercent": 71, "suggestedAngle": "Share your actual creator workflow Notion setup and link a free template download" },
+        { "trend": "Creator Productivity", "momentum": "+15% this week", "matchPercent": 68, "suggestedAngle": "Film a 'day in my life' showing your productivity stack" },
+        { "trend": "Digital Products", "momentum": "+25% this week", "matchPercent": 76, "suggestedAngle": "Break down how you'd build a digital product in a weekend" }
+      ],
+      "contentOpportunities": [
+        "Productivity content gets 2x saves for your audience — lean into templates",
+        "Your audience is 68% creators who use Notion — perfect product-market fit",
+        "Templates can become a passive revenue stream alongside content"
+      ]
+    },
+    {
+      "id": "report-004",
+      "title": "Monthly Trend Summary — July 2026",
+      "status": "completed",
+      "requestedAt": "2026-08-01T09:00:00Z",
+      "completedAt": "2026-08-01T09:50:00Z",
+      "summary": "Visual AI editing and build-in-public content dominated July. Your engagement was highest on AI-related reels. Recommended: double down on AI content with before/after format.",
+      "trendCount": 18,
+      "topTrends": ["AI Photo Editing", "Build in Public", "Short-form Education", "Camera Gear Reviews"],
+      "matchScore": 82,
+      "niche": "Tech & Coding",
+      "audienceOverlap": 65,
+      "detailedInsights": [
+        { "trend": "AI Photo Editing", "momentum": "+56% this month", "matchPercent": 88, "suggestedAngle": "Before vs after: transform a boring phone photo into a movie still using free AI tools" },
+        { "trend": "Build in Public", "momentum": "+34% this month", "matchPercent": 85, "suggestedAngle": "Weekly update thread showing real revenue numbers and learnings" },
+        { "trend": "Short-form Education", "momentum": "+28% this month", "matchPercent": 79, "suggestedAngle": "60-second explainer reels on trending dev topics" },
+        { "trend": "Camera Gear Reviews", "momentum": "+12% this month", "matchPercent": 62, "suggestedAngle": "Honest review: the one camera upgrade that actually made a difference" }
+      ],
+      "contentOpportunities": [
+        "AI editing reels have your highest engagement — double down on before/after format",
+        "Build-in-public threads get 3x your average reach — consider a weekly series",
+        "Short-form education is your fastest path to new followers right now",
+        "Camera gear reviews could be a sponsored content avenue"
+      ]
+    }
+  ]
+}
