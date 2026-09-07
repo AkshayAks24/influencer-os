@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { OnboardingData, OnboardingStep } from "@/types/onboarding";
+import type { OnboardingData, OnboardingStep, ConnectedAccount } from "@/types/onboarding";
 import { ONBOARDING_INITIAL_DATA } from "@/types/onboarding";
 
 import { WelcomeStep } from "@/components/onboarding/WelcomeStep";
@@ -109,7 +109,7 @@ export function Onboarding() {
       return (
         <ConnectAccountsStep
           connectedAccounts={data.connectedAccounts}
-          onUpdate={(connectedAccounts) => setData({ ...data, connectedAccounts })}
+          onUpdate={(connectedAccounts: ConnectedAccount[]) => setData({ ...data, connectedAccounts })}
           onNext={nextStep}
           onBack={prevStep}
         />

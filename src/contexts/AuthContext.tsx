@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
-import apiClient from "@/lib/apiClient";
 
 export type Role = "brand" | "influencer";
 
@@ -48,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     initAuth();
   }, []);
 
-  const login = async (email?: string, password?: string, remember: boolean = false) => {
+  const login = async (email?: string, _password?: string, remember: boolean = false) => {
     setIsLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 800));
@@ -73,7 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const register = async (email: string, password: string, role: Role, name: string) => {
+  const register = async (email: string, _password: string, role: Role, name: string) => {
     setIsLoading(true);
     try {
       await new Promise(resolve => setTimeout(resolve, 800));

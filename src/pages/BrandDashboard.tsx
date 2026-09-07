@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@/contexts/AuthContext"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -11,7 +9,7 @@ import { StatCard } from "@/components/common/StatCard"
 import { EmptyState } from "@/components/common/EmptyState"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Skeleton } from "@/components/common/Skeleton"
-import { FiPlus, FiActivity, FiUsers, FiHeart, FiDollarSign, FiChevronRight, FiBell, FiMessageSquare, FiAlertCircle, FiX, FiCheckCircle } from "react-icons/fi"
+import { FiPlus, FiActivity, FiUsers, FiDollarSign, FiChevronRight, FiBell, FiMessageSquare, FiAlertCircle, FiCheckCircle } from "react-icons/fi"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { motion } from "framer-motion"
 
@@ -24,7 +22,7 @@ import apiClient from "@/lib/apiClient"
 export function BrandDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
-  const { campaigns, isLoading, fetchCampaigns } = useCampaigns()
+  const { campaigns, isLoading } = useCampaigns()
   const { notifications } = useNotifications()
 
   const [dashboardStats, setDashboardStats] = useState<any>(null)

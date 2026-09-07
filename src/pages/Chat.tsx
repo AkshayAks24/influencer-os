@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react"
 import { FiSend, FiArrowLeft, FiMoreVertical, FiMessageSquare } from "react-icons/fi"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -92,7 +92,7 @@ export function Chat() {
     // Optimistically add message
     const tempMsg: ChatMessage = {
       id: Date.now(),
-      sender_id: currentUser?.id || 0,
+      sender_id: Number(currentUser?.id) || 0,
       receiver_id: activeUserId,
       message: tempText,
       is_read: true,
@@ -224,7 +224,7 @@ export function Chat() {
               className="flex-1 overflow-y-auto p-4 space-y-4"
             >
               {messages.map((msg, i) => {
-                const isOwnMessage = msg.sender_id === currentUser?.id
+                const isOwnMessage = msg.sender_id === Number(currentUser?.id)
                 const showAvatar = !isOwnMessage && (i === messages.length - 1 || messages[i + 1]?.sender_id !== msg.sender_id)
                 
                 return (

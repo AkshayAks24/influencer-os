@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { OnboardingLayout } from "./OnboardingLayout";
 import { FaInstagram } from "react-icons/fa";
 
+import type { ConnectedAccount } from "@/types/onboarding";
+
 interface ConnectAccountsStepProps {
-  connectedAccounts: { platform: string; username: string; connected: boolean }[];
-  onUpdate: (accounts: { platform: string; username: string; connected: boolean }[]) => void;
+  connectedAccounts: ConnectedAccount[];
+  onUpdate: (accounts: ConnectedAccount[]) => void;
   onNext: () => void;
   onBack: () => void;
 }
@@ -15,7 +17,7 @@ export function ConnectAccountsStep({ connectedAccounts, onUpdate, onNext, onBac
   const igAccount = connectedAccounts.find((a) => a.platform === "instagram");
   const isConnected = igAccount?.connected ?? false;
 
-  const handleConnect = async (platform: string) => {
+  const handleConnect = async (platform: ConnectedAccount["platform"]) => {
     setConnecting(platform);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     const updated = [

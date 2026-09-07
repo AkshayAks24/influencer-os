@@ -38,15 +38,6 @@ import { AdminAIProcessing } from "@/pages/admin/AdminAIProcessing"
 import { AdminReports } from "@/pages/admin/AdminReports"
 import { AdminFeedback } from "@/pages/admin/AdminFeedback"
 
-// Placeholder component for unimplemented pages
-const Placeholder = ({ name }: { name: string }) => (
-  <div className="flex h-full items-center justify-center p-8 text-muted-foreground">
-    <div className="text-center">
-      <h2 className="text-2xl font-semibold mb-2">{name}</h2>
-      <p>Page coming soon...</p>
-    </div>
-  </div>
-)
 
 export function AppRoutes() {
   return (

@@ -26,7 +26,7 @@ const checklist = [
 export function InfluencerDashboard() {
   const { currentUser } = useAuth()
   const navigate = useNavigate()
-  const { campaigns, isLoading: isCampaignsLoading } = useCampaigns()
+  const { isLoading: isCampaignsLoading } = useCampaigns()
   const [dashboardStats, setDashboardStats] = useState<any>(null)
   const [isStatsLoading, setIsStatsLoading] = useState(true)
 
@@ -201,7 +201,7 @@ export function InfluencerDashboard() {
                 />
               ) : (
                 <div className="space-y-4">
-                  {activeCampaigns.map((campaign, i) => (
+                  {activeCampaigns.map((campaign: any, i: number) => (
                     <motion.div 
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -323,7 +323,7 @@ export function InfluencerDashboard() {
                 />
               ) : (
                 <div className="grid grid-cols-1 gap-4">
-                  {recommendedCampaigns.map((campaign, i) => {
+                  {recommendedCampaigns.map((campaign: any, i: number) => {
                     const matchScore = Math.floor(Math.random() * (99 - 85 + 1) + 85);
                     return (
                       <motion.div 

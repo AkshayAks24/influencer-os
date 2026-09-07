@@ -1,7 +1,7 @@
 import { useCampaigns } from "@/contexts/CampaignsContext"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
-import { FiActivity, FiChevronRight, FiFolder, FiPlus } from "react-icons/fi"
+import { FiActivity, FiFolder, FiPlus } from "react-icons/fi"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { EmptyState } from "@/components/common/EmptyState"

@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/common/Skeleton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
+
 
 import { useAuth } from "@/contexts/AuthContext"
 import apiClient from "@/lib/apiClient"
@@ -43,7 +43,6 @@ export function Campaign() {
   const [isSubmittingLiveUrl, setIsSubmittingLiveUrl] = useState(false)
   const [liveUrlInput, setLiveUrlInput] = useState("")
   const [isSubmittingContent, setIsSubmittingContent] = useState(false)
-  const [isReviewingContent, setIsReviewingContent] = useState(false)
 
   const fetchCampaignData = async () => {
     setIsLoading(true)
@@ -157,7 +156,6 @@ export function Campaign() {
   }
 
   const handleReviewContent = async (contentId: number, status: string) => {
-    setIsReviewingContent(true)
     try {
       await apiClient.patch(`/content/${contentId}/review`, {
         decision: status,
@@ -167,8 +165,6 @@ export function Campaign() {
     } catch (error: any) {
       console.error("Failed to review content", error)
       setAlertState({ isOpen: true, title: "Error", message: error.response?.data?.detail || "Failed to review content", isError: true })
-    } finally {
-      setIsReviewingContent(false)
     }
   }
 

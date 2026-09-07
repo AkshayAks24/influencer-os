@@ -161,7 +161,7 @@ export function AdminTrendResearch() {
           </div>
           <div className="space-y-4">
             {evidenceList.length === 0 && <p className="text-sm text-slate-500 italic">No evidence added yet.</p>}
-            {evidenceList.map((ev, index) => (
+            {evidenceList.map((ev) => (
               <div key={ev.id} className="p-4 bg-gray-50 rounded-lg border border-gray-200 relative">
                 <button type="button" onClick={() => removeEvidence(ev.id)} className="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors">
                   <HiTrash className="w-5 h-5" />
